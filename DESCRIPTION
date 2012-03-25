@@ -1,0 +1,11 @@
+Package: FishMaps
+Type: Package
+Title: Proportional symbol mapping for fishery data
+Version: 0.2-0
+Date: 2007-03-14
+Author: Fernando Mayer
+Maintainer: Fernando Mayer <fernandomayer@gmail.com>
+Depends: R (>= 2.4.1), maps, mapdata, sp
+Description: Proportional symbol mapping for fishery data (catch, effort and CPUE),
+    using pre-defined or user-defined maps.
+License: GPL version 2 or newer <http://www.gnu.org/licenses/gpl.html>
