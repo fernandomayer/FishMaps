@@ -14,9 +14,11 @@ Download the source code and
 
 * install via the command line
 
-  R CMD INSTALL -l /path/to/your/R/library FishMaps<version>.tar.gz
+    R CMD INSTALL -l /path/to/your/R/library FishMaps<version>.tar.gz
+
+or
 
 * inside an R session
   
-  install.packages("FishMaps<version>.tar.gz", repos = NULL,
-                   lib.loc = "/path/to/your/R/library")
+    install.packages("FishMaps<version>.tar.gz", repos = NULL,
+                     lib.loc = "/path/to/your/R/library")
