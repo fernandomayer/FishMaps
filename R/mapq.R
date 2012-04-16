@@ -11,13 +11,13 @@ mapq <- function(year, quarter, lat, lon, cfu, breaks, type = c("LL","BB"), iden
     if(!is.numeric(lat)) stop("Argument 'lat' must be numeric or integer")
     if(!is.numeric(lon)) stop("Argument 'lon' must be numeric or integer")
     if(!is.numeric(cfu)) stop("Argument 'cfu' must be numeric or integer")
-    if(ident == FALSE & !missing(ident.type)) stop("Argument 'ident.type' must be used only when 
+    if(ident == FALSE & !missing(ident.type)) stop("Argument 'ident.type' must be used only when
         'ident = TRUE'")
-    if(ident == FALSE & !missing(ident.cex)) stop("Argument 'ident.cex' must be used only when 
+    if(ident == FALSE & !missing(ident.cex)) stop("Argument 'ident.cex' must be used only when
         'ident = TRUE'")
-    if(!is.null(xlim) & !is.null(ylim) & !missing(type)) stop("Argument 'type' is not valid when 
+    if(!is.null(xlim) & !is.null(ylim) & !missing(type)) stop("Argument 'type' is not valid when
         'xlim' and 'ylim' are specified")
-    if(!missing(xlim) & missing(ylim) | missing(xlim) & !missing(ylim)) stop("When one of 
+    if(!missing(xlim) & missing(ylim) | missing(xlim) & !missing(ylim)) stop("When one of
         'xlim/ylim' is specified, the other 'xlim/ylim' must also be specified")
     if(!missing(xlim) & !missing(ylim))
     {
@@ -29,21 +29,21 @@ mapq <- function(year, quarter, lat, lon, cfu, breaks, type = c("LL","BB"), iden
     if(!is.null(minortick) & !is.numeric(minortick)) stop("Argument 'minortick' must be numeric")
     if(legend == FALSE)
     {
-        if(!missing(leg.pos) | !missing(leg.cex) | !missing(leg.title)) stop("When 
+        if(!missing(leg.pos) | !missing(leg.cex) | !missing(leg.title)) stop("When
             legend = FALSE, arguments 'leg.pos', 'leg.cex' or 'leg.title' can't be specified")
     }
     if(!is.character(leg.pos)) stop("Argument 'leg.pos' must be character and one of 'bottomright',
         'bottom', 'bottomleft', 'left', 'topleft', 'top', 'topright', 'right', 'center'")
-    if(!is.null(leg.title) & !is.character(leg.title)) stop("Argument 'leg.title' must be 
-        character")    
+    if(!is.null(leg.title) & !is.character(leg.title)) stop("Argument 'leg.title' must be
+        character")
     if(fig == TRUE)
     {
-        if(!is.numeric(fig.w) | !is.numeric(fig.h)) stop("Arguments 'fig.w' and/or 'fig.h' must be 
+        if(!is.numeric(fig.w) | !is.numeric(fig.h)) stop("Arguments 'fig.w' and/or 'fig.h' must be
             numeric")
         if(!is.character(fig.name)) stop("Argument 'fig.name' must be character")
     }
     if(!is.null(fig.par) & !is.list(fig.par)) stop("Argument 'fig.par' must be a list")
-    # find the breaks and 'cut' the data. 
+    # find the breaks and 'cut' the data.
     if(any(cfu == 0))
     {
     # points.idx must have the same length as cfu, otherwise the points are not plotted in the
@@ -73,7 +73,7 @@ mapq <- function(year, quarter, lat, lon, cfu, breaks, type = c("LL","BB"), iden
     {
         type <- match.arg(type)
         switch(type,
-            LL = {    
+            LL = {
                	if(fig == FALSE)
                	{
                	    par(ask=TRUE)
@@ -86,7 +86,7 @@ mapq <- function(year, quarter, lat, lon, cfu, breaks, type = c("LL","BB"), iden
         		        {
             		        fig.type <- match.arg(fig.type)
                             switch(fig.type,
-                                png = {png(file=paste("map_",fig.name,"_",i,"_",j,".png",sep=""), 
+                                png = {png(filename=paste("map_",fig.name,"_",i,"_",j,".png",sep=""),
                                     width=fig.w, height=fig.h)},
                                 pdf = {pdf(file=paste("map_",fig.name,"_",i,"_",j,".pdf",sep=""),
                                     width=fig.w, height=fig.h)}
@@ -109,10 +109,10 @@ mapq <- function(year, quarter, lat, lon, cfu, breaks, type = c("LL","BB"), iden
             		    # add points and legend when cfu has zeros
             		    if(any(cfu == 0))
             		    {
-            		        points(lon[year==i & quarter==j & cfu==0], 
+            		        points(lon[year==i & quarter==j & cfu==0],
             		            lat[year==i & quarter==j & cfu==0], pch=3, cex=1)
-            		        points(lon[year==i & quarter==j & cfu!=0], 
-            		            lat[year==i & quarter==j & cfu!=0], pch=19, 
+            		        points(lon[year==i & quarter==j & cfu!=0],
+            		            lat[year==i & quarter==j & cfu!=0], pch=19,
             		            cex=points.idx[year==i & quarter==j & cfu!=0])
             		        # legend
             		        if(legend == TRUE)
@@ -122,7 +122,7 @@ mapq <- function(year, quarter, lat, lon, cfu, breaks, type = c("LL","BB"), iden
                 		            num.class <- breaks+1) # +1 because of the 0 class
                 		        text.width <- max(strwidth(legend.text))
                 		        temp <- legend(leg.pos, legend=rep(" ",num.class),
-                		            text.width=text.width, bg="white", 
+                		            text.width=text.width, bg="white",
                 		            y.intersp=(num.class-1)/2.5, # 2.5 is a random number
                 		            pch=c(3,rep(19,(num.class-1))),
                 		            pt.cex=c(1,1:(num.class-1)),
@@ -159,7 +159,7 @@ mapq <- function(year, quarter, lat, lon, cfu, breaks, type = c("LL","BB"), iden
             		    {
             		        dev.off()
             		    }
-            		}        		    
+            		}
         		}
         		if(fig == FALSE)
         		{
@@ -179,7 +179,7 @@ mapq <- function(year, quarter, lat, lon, cfu, breaks, type = c("LL","BB"), iden
         		        {
             		        fig.type <- match.arg(fig.type)
                             switch(fig.type,
-                                png = {png(file=paste("map_",fig.name,"_",i,"_",j,".png",sep=""), 
+                                png = {png(filename=paste("map_",fig.name,"_",i,"_",j,".png",sep=""),
                                     width=fig.w, height=fig.h)},
                                 pdf = {pdf(file=paste("map_",fig.name,"_",i,"_",j,".pdf",sep=""),
                                     width=fig.w, height=fig.h)}
@@ -202,9 +202,9 @@ mapq <- function(year, quarter, lat, lon, cfu, breaks, type = c("LL","BB"), iden
             		    # add points and legend when cfu has zeros
             		    if(any(cfu == 0))
             		    {
-            		        points(lon[year==i & quarter==j & cfu==0], 
+            		        points(lon[year==i & quarter==j & cfu==0],
             		            lat[year==i & quarter==j & cfu==0], pch=3, cex=1)
-            		        points(lon[year==i & quarter==j & cfu!=0], 
+            		        points(lon[year==i & quarter==j & cfu!=0],
             		            lat[year==i & quarter==j & cfu!=0], pch=19,
             		            cex=points.idx[year==i & quarter==j & cfu!=0])
             		        # legend
@@ -215,7 +215,7 @@ mapq <- function(year, quarter, lat, lon, cfu, breaks, type = c("LL","BB"), iden
                 		            num.class <- breaks+1) # +1 because of the 0 class
                 		        text.width <- max(strwidth(legend.text))
                 		        temp <- legend(leg.pos, legend=rep(" ",num.class),
-                		            text.width=text.width, bg="white", 
+                		            text.width=text.width, bg="white",
                 		            y.intersp=(num.class-1)/2.5,
                 		            pch=c(3,rep(19,(num.class-1))),
                 		            pt.cex=c(1,1:(num.class-1)),
@@ -252,7 +252,7 @@ mapq <- function(year, quarter, lat, lon, cfu, breaks, type = c("LL","BB"), iden
             		    {
             		        dev.off()
             		    }
-            		}        		    
+            		}
         		}
         		if(fig == FALSE)
         		{
@@ -275,7 +275,7 @@ mapq <- function(year, quarter, lat, lon, cfu, breaks, type = c("LL","BB"), iden
 		        {
     		        fig.type <- match.arg(fig.type)
                     switch(fig.type,
-                        png = {png(file=paste("map_",fig.name,"_",i,"_",j,".png",sep=""), 
+                        png = {png(filename=paste("map_",fig.name,"_",i,"_",j,".png",sep=""),
                             width=fig.w, height=fig.h)},
                         pdf = {pdf(file=paste("map_",fig.name,"_",i,"_",j,".pdf",sep=""),
                             width=fig.w, height=fig.h)}
@@ -322,7 +322,7 @@ mapq <- function(year, quarter, lat, lon, cfu, breaks, type = c("LL","BB"), iden
         		            num.class <- breaks+1) # +1 because of the 0 class
         		        text.width <- max(strwidth(legend.text))
         		        temp <- legend(leg.pos, legend=rep(" ",num.class),
-        		            text.width=text.width, bg="white", 
+        		            text.width=text.width, bg="white",
         		            y.intersp=(num.class-1)/2.5,
         		            pch=c(3,rep(19,(num.class-1))),
         		            pt.cex=c(1,1:(num.class-1)),
