@@ -18,6 +18,6 @@ $ R CMD INSTALL -l /path/to/your/R/library FishMaps<version>.tar.gz
 or inside an `R` session
 
 ```R
-> install.packages("FishMaps<version>.tar.gz", repos = NULL,lib.loc = "/path/to/your/R/library")
+> install.packages("FishMaps<version>.tar.gz", repos = NULL, lib.loc = "/path/to/your/R/library")
 ```
 
