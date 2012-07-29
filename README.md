@@ -47,6 +47,15 @@ From the binary (`zip`) (**do not unzip it**): put the file in your working dire
 > install.packages("FishMaps_0.2-0.zip", repos = NULL, dependencies = TRUE)
 ```
 
+### Platform independent
+
+In any platform you can install FishMaps from this GitHub repository using the `install_github()` function from package `devtools`:
+
+```R
+> require(devtools)
+> install_github("FishMaps", username = "fernandomayer")
+```
+
 ## Documentation
 
 * Reference manual: [FishMaps.pdf] (https://github.com/fernandomayer/FishMaps/blob/master/downloads/FishMaps.pdf?raw=true)
