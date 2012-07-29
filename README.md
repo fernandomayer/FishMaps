@@ -16,7 +16,8 @@ Although FishMaps was designed for fishery data, any kind of georeferenced data 
 ## Download
 
 * Source package for Linux/Mac: [FishMaps_0.2-0.tar.gz] (https://github.com/fernandomayer/FishMaps/blob/master/downloads/FishMaps_0.2-0.tar.gz?raw=true)
-* Windows binary: [FishMaps_0.2-0.zip] (https://github.com/fernandomayer/FishMaps/blob/master/downloads/FishMaps_0.2-0.zip?raw=true) > NOTE: do not unzip it under Windows.
+* Windows binary: [FishMaps_0.2-0.zip] (https://github.com/fernandomayer/FishMaps/blob/master/downloads/FishMaps_0.2-0.zip?raw=true) 
+> NOTE: do not unzip it under Windows.
 
 ## Installation
 
@@ -31,14 +32,15 @@ $ R CMD INSTALL -l /path/to/your/R/library FishMaps_0.2-0.tar.gz
 or inside an `R` session
 
 ```R
-> install.packages("FishMaps_0.2-0.tar.gz", repos = NULL, dependencies = TRUE, lib.loc = "/path/to/your/R/library")
+> install.packages("FishMaps_0.2-0.tar.gz", repos = NULL,
+	dependencies = TRUE, lib.loc = "/path/to/your/R/library")
 ```
 
 Note that `-l /path/to/your/R/library` in the former and `lib.loc = "/path/to/your/R/library` in the latter are optional. Only use it if you want to install in a personal library, other than the standard `R` library.
 
 ### Windows
 
-From the binary (`zip`): put the file in your working directory, and from inside `R`
+From the binary (`zip`) (**do not unzip it**): put the file in your working directory, and from inside `R`
 
 ```R
 > install.packages("FishMaps_0.2-0.zip", repos = NULL, dependencies = TRUE)
