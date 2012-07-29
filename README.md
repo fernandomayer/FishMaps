@@ -16,7 +16,8 @@ Although FishMaps was designed for fishery data, any kind of georeferenced data 
 ## Download
 
 * Source package for Linux/Mac: [FishMaps_0.2-0.tar.gz] (https://github.com/fernandomayer/FishMaps/blob/master/downloads/FishMaps_0.2-0.tar.gz?raw=true)
-* Windows binary: [FishMaps_0.2-0.zip] (https://github.com/fernandomayer/FishMaps/blob/master/downloads/FishMaps_0.2-0.zip?raw=true) 
+* Windows binary: [FishMaps_0.2-0.zip] (https://github.com/fernandomayer/FishMaps/blob/master/downloads/FishMaps_0.2-0.zip?raw=true)
+
 > NOTE: do not unzip it under Windows.
 
 ## Installation
