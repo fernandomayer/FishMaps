@@ -30,7 +30,7 @@ Installing from the source code (`tar.gz`) on Linux/Mac (make sure you are on th
 $ R CMD INSTALL -l /path/to/your/R/library FishMaps_0.2-0.tar.gz
 ```
 
-In this case, make sure you have installed the packages: `maps`, `mapdata`, and `sp`. Inside an `R` session:
+In this case, make sure you have installed the packages: `maps`, `mapdata`, and `sp`. Or, inside an `R` session:
 
 ```R
 > install.packages("FishMaps_0.2-0.tar.gz", repos = NULL,
@@ -51,3 +51,7 @@ From the binary (`zip`) (**do not unzip it**): put the file in your working dire
 
 * Reference manual: [FishMaps.pdf] (https://github.com/fernandomayer/FishMaps/blob/master/downloads/FishMaps.pdf?raw=true)
 * Vignette: [FishMaps_paper.pdf] (https://github.com/fernandomayer/FishMaps/blob/master/inst/doc/FishMaps_paper.pdf?raw=true)
+
+## License
+
+This package is released under the [GNU General Public License (GPL) v. 3.0] (http://www.gnu.org/licenses/gpl-3.0.html)
