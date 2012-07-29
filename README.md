@@ -49,5 +49,5 @@ From the binary (`zip`) (**do not unzip it**): put the file in your working dire
 
 ## Documentation
 
-* Reference manual:
-* Vignette: 
+* Reference manual: [FishMaps.pdf] (https://github.com/fernandomayer/FishMaps/blob/master/downloads/FishMaps.pdf?raw=true)
+* Vignette: [FishMaps_paper.pdf] (https://github.com/fernandomayer/FishMaps/blob/master/inst/doc/FishMaps_paper.pdf?raw=true)
