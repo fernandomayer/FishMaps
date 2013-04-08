@@ -19,7 +19,6 @@ install:
 
 # build locally
 script:
-  - cd /home/travis/R
-  - R CMD build FishMaps
-  - R CMD INSTALL FishMaps_0.2-0.tar.gz
+  - R CMD build ../FishMaps
+#  - R CMD INSTALL FishMaps_0.2-0.tar.gz
   - R CMD check FishMaps_0.2-0.tar.gz
