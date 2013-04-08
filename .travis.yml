@@ -3,24 +3,22 @@
 language: python
 
 # environment variables
-env:
-  - R_LIBS_USER=~/R
+# env:
+#   - R_LIBS_USER=~/R
 
 # install dependencies
 install:
   - sudo apt-add-repository -y ppa:marutter/rdev
   - sudo apt-get update
   - sudo apt-get install r-base-dev qpdf texinfo texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra
-  - "[ ! -d ~/R ] && mkdir ~/R"
+  - Rscript -e 'install.packages(c("maps", "mapdata", "sp"), dep = TRUE, repos = "http://cran-r.c3sl.ufpr.br/")'
+#  - "[ ! -d ~/R ] && mkdir ~/R"
   - R --version
   - Rscript -e '.libPaths(); sessionInfo()'
-  - sudo apt-get install r-cran-maps r-cran-mapdata r-cran-sp
-#  - Rscript -e 'install.packages(c("maps", "mapdata", "sp"), dep = TRUE, repos = "http://cran-r.c3sl.ufpr.br/")'
   - pwd
-#  - Rscript -e 'install.packages("FishMaps", dep = TRUE, repos = NULL)'
 
 # build locally
 script:
   - R CMD build ../FishMaps
-#  - R CMD INSTALL FishMaps_0.2-0.tar.gz
   - R CMD check FishMaps_0.2-0.tar.gz
+  - R CMD INSTALL FishMaps_0.2-0.tar.gz
