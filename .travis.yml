@@ -13,13 +13,14 @@ install:
   - sudo apt-get install r-base-dev qpdf texinfo texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra
   - "[ ! -d ~/R ] && mkdir ~/R"
   - R --version
-  - R -e '.libPaths(); sessionInfo()'
+  - Rscript -e '.libPaths(); sessionInfo()'
 #  - Rscript -e 'install.packages("FishMaps", dep = TRUE, repos = NULL)'
 
 # build locally
 build:
-  - cd ../
+  - cd ..;\
   - R CMD build FishMaps
+  - R CMD INSTALL FishMaps_0.2-0.tar.gz
 
 # run tests
 script:
