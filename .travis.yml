@@ -14,14 +14,12 @@ install:
   - "[ ! -d ~/R ] && mkdir ~/R"
   - R --version
   - Rscript -e '.libPaths(); sessionInfo()'
+  - pwd
 #  - Rscript -e 'install.packages("FishMaps", dep = TRUE, repos = NULL)'
 
 # build locally
-build:
-  - cd ..;\
+script:
+  - cd /home/travis/R
   - R CMD build FishMaps
   - R CMD INSTALL FishMaps_0.2-0.tar.gz
-
-# run tests
-script:
-   - R CMD check FishMaps_0.2-0.tar.gz
+  - R CMD check FishMaps_0.2-0.tar.gz
