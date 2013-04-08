@@ -22,6 +22,5 @@ build:
   - R CMD build FishMaps
 
 # run tests
-# script:
-  # - make install
-  # - make check
+script:
+   - R CMD check FishMaps_0.2-0.tar.gz
