@@ -14,6 +14,7 @@ install:
   - "[ ! -d ~/R ] && mkdir ~/R"
   - R --version
   - Rscript -e '.libPaths(); sessionInfo()'
+  - Rscript -e 'install.packages(c("maps", "mapdata", "sp"), dep = TRUE, repos = "http://cran-r.c3sl.ufpr.br/")'
   - pwd
 #  - Rscript -e 'install.packages("FishMaps", dep = TRUE, repos = NULL)'
 
