@@ -22,6 +22,6 @@ build:
   - R CMD build FishMaps
 
 # run tests
-script:
-  - make install
-  - make check
+# script:
+  # - make install
+  # - make check
