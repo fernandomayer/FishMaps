@@ -1,5 +1,7 @@
 # FishMaps 0.2-0
 
+[![Build Status](https://travis-ci.org/fernandomayer/FishMaps.png)](https://travis-ci.org/fernandomayer/FishMaps)
+
 Proportional symbol mapping for fishery data in batch mode.
 
 ## Introduction
