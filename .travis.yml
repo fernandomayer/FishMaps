@@ -11,7 +11,7 @@ install:
   - sudo apt-add-repository -y ppa:marutter/rdev
   - sudo apt-get update
   - sudo apt-get install r-base-dev qpdf texinfo texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra
-  - sudo apt-get install gdal-bin libgdal-dev libgdal1 libgdal1-dev libgeos-c1 libgeos-dev
+  - sudo apt-get install libgdal-dev libgeos-dev
   - "[ ! -d ~/R ] && mkdir ~/R"
   - R --version
   - Rscript -e '.libPaths(); sessionInfo()'
