@@ -3,3 +3,4 @@ README.md
 .git/
 vignette/
 downloads/
+.travis.yml
