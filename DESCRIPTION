@@ -8,3 +8,4 @@ Depends: R (>= 2.4.1), maps, mapdata, sp
 Description: Proportional symbol mapping for fishery data (catch, effort
 	     and CPUE), using pre-defined or user-defined maps.
 License: GPL-3
+Packaged: 2013-07-10 22:07:39 UTC; fernando
