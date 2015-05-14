@@ -4,6 +4,10 @@
 
 Proportional symbol mapping for fishery data in batch mode.
 
+> NOTE: This is the final version of the old (legacy) FishMaps. It ended
+> here at v0.2-0. From now on the development and final versions can be
+> found in the master branch, and it will use Lattice for the maps.
+
 ## Introduction
 
 FishMaps was designed to plot fishery data (catch, effort, CPUE) into
