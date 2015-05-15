@@ -1,29 +1,4 @@
-# From Yihui's knitr
-# it is not really python, but there is no R support on Travis CI yet
-language: python
+language: r
+sudo: required
 
-# environment variables
-env:
-  - R_LIBS_USER=~/R
-
-# install dependencies
-install:
-  - sudo apt-add-repository -y ppa:marutter/rdev
-  - sudo apt-get update
-  - sudo apt-get install r-base-dev qpdf texinfo texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra
-  - sudo apt-get install libgdal-dev libgeos-dev libproj-dev
-  - "[ ! -d ~/R ] && mkdir ~/R"
-  - R --version
-  - Rscript -e '.libPaths(); sessionInfo()'
-  - Rscript -e 'install.packages(c("maps", "mapdata", "sp"), dep = TRUE, repos = "http://cran-r.c3sl.ufpr.br/")'
-
-# build locally
-script:
-  - R CMD build ../FishMaps
-  - R CMD check FishMaps_0.2-0.tar.gz
-  - R CMD INSTALL FishMaps_0.2-0.tar.gz
-
-# final check
-after_script:
-  - Rscript -e 'require(FishMaps, quietly = TRUE); ifelse("package:FishMaps" %in% search(), "Package installed and loaded succesfully", "Package not loaded. Check installation")'
-
+cran: http://cran-r.c3sl.ufpr.br/
