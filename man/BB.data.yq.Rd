@@ -4,11 +4,13 @@
 \name{BB.data.yq}
 \alias{BB.data.yq}
 \title{Baitboat quarterly aggregated data}
-\format{A data frame with 120 observations on the following 5 variables.
-\describe{ \item{list("year")}{a factor with levels \code{2001}
-\code{2002}} \item{list("quarter")}{a factor with levels \code{1} \code{2}
-\code{3} \code{4}} \item{list("lat")}{a numeric vector}
-\item{list("lon")}{a numeric vector} \item{list("cpue")}{a numeric vector}
+\format{A data frame with 120 observations on the following 5 variables:
+\itemize{
+  \item year: a factor with levels \code{2001}, \code{2002}
+  \item quarter: a factor with levels \code{1}, \code{2}, \code{3}, \code{4}
+  \item lat: a numeric vector
+  \item lon: a numeric vector
+  \item cpue: a numeric vector
 }}
 \source{
 Randomly generated data.

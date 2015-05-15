@@ -4,10 +4,13 @@
 \name{BB.data.y}
 \alias{BB.data.y}
 \title{Baitboat yearly aggregated data}
-\format{A data frame with 56 observations on the following 4 variables.
-\describe{ \item{list("year")}{a factor with levels \code{2001}
-\code{2002}} \item{list("lat")}{a numeric vector} \item{list("lon")}{a
-numeric vector} \item{list("cpue")}{a numeric vector} }}
+\format{A data frame with 56 observations on the following 4 variables:
+\itemize{
+  \item year: a factor with levels \code{2001}, \code{2002}
+  \item lat: a numeric vector
+  \item lon: a numeric vector
+  \item cpue: a numeric vector
+}}
 \source{
 Randomly generated data.
 }

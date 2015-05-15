@@ -4,12 +4,16 @@
 \name{LL.data.yq}
 \alias{LL.data.yq}
 \title{Longline quarterly aggregated data}
-\format{A data frame with 181 observations on the following 5 variables.
-\describe{ \item{list("year")}{a factor with levels \code{2001} \code{2002}
-\code{2003} \code{2004} \code{2005}} \item{list("quarter")}{a factor with
-levels \code{1} \code{2} \code{3} \code{4}} \item{list("lat")}{a numeric
-vector} \item{list("lon")}{a numeric vector} \item{list("cpue")}{a numeric
-vector} }}
+\format{A data frame with 181 observations on the following 5 variables:
+\itemize{
+  \item year: a factor with levels \code{2001}, \code{2002},
+    \code{2003}, \code{2004}, \code{2005}
+  \item quarter: a factor with levels \code{1}, \code{2}, \code{3},
+    \code{4}
+\item lat: a numeric vector
+\item lon: a numeric vector
+\item cpue a numeric vector
+}}
 \source{
 Randomly generated data.
 }
@@ -22,7 +26,7 @@ based at Itajai (SC) harbor.
 }
 \examples{
 data(LL.data.yq)
-    str(LL.data.yq)
+str(LL.data.yq)
 }
 \keyword{datasets}
 
