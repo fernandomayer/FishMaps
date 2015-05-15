@@ -1,7 +1,7 @@
 Package: FishMaps
 Title: Proportional symbol mapping for fishery data
 Version: 0.3-0
-Author@R: person("Fernando", "Mayer", email = "fernandomayer@gmail.com",
+Authors@R: person("Fernando", "Mayer", email = "fernandomayer@gmail.com",
 	  role = c("aut", "cre"))
 Description: Proportional symbol mapping for fishery data (catch, effort
 	     and CPUE), using pre-defined or user-defined maps.
