@@ -1,8 +1,9 @@
 README.md
+Rplots.pdf
 .gitignore
 .Rprofile
-Rplots.pdf
+.travis.yml
 .git/
 vignette/
 downloads/
-.travis.yml
+playground/
