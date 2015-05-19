@@ -3,6 +3,8 @@
 ## experimental and is used for tests and examples.
 ##======================================================================
 
+source("R/levelmap.R")
+
 require(grid)
 require(lattice)
 require(latticeExtra)
@@ -12,6 +14,14 @@ require(marelac)
 data(Bathymetry)
 
 dados <- read.csv("../data/mapa.latt.q.csv")
+
+load("data/BB.data.y.rda")
+args(levelmap)
+levelmap(cpue ~ lon + lat | year, data = BB.data.y,
+         xlim = c(-60, -40), ylim = c(-35, -20),
+         breaks = pretty(BB.data.y$cpue), jump = 2,
+         bathymetry = TRUE, bathymetry.seq = seq(0, 5000, 1000))
+
 
 ## Carrega a funcao
 source("levelmap.R")
