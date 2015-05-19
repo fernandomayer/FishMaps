@@ -7,3 +7,7 @@ Rplots.pdf
 vignette/
 downloads/
 playground/
+# Emacs temp files
+\#*\#
+.\#*
+
