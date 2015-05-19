@@ -1,3 +1,26 @@
+##' @title Plots fishery data into maps
+##' @name levelmap
+##'
+##' @description Plots georeferenced fishery data into maps. This
+##' desciption must be expanded.
+##'
+##' @param x
+##' @param data
+##' @param xlim
+##' @param ylim
+##' @param breaks
+##' @param jump
+##' @param key.space
+##' @param database
+##' @param bathymetry
+##' @param bathymetry.seq
+##' @param ...
+##'
+##' @return A map with data
+##'
+##' @author Fernando Mayer
+##'
+##' @export
 levelmap <- function(x, data, xlim, ylim, breaks, jump,
                      key.space = "right",
                      database = "world",
@@ -6,12 +29,12 @@ levelmap <- function(x, data, xlim, ylim, breaks, jump,
     ## Pacotes necessarios: isso deve ser removido daqui antes de virar
     ## pacote. Esses pacotes devem ser dependencias e serao carregados
     ## automaticamente quando o FishMaps2 for carregado
-    require(grid)
-    require(lattice)
-    require(latticeExtra)
-    require(maps)
-    require(mapdata)
-    require(marelac)
+    ## require(grid)
+    ## require(lattice)
+    ## require(latticeExtra)
+    ## require(maps)
+    ## require(mapdata)
+    ## require(marelac)
     ## Base de dados para os mapas
     mm <- map(database = database, plot = FALSE, fill = TRUE)
     ## Define os ranges do mapa, e os labels para colocar nos graficos
