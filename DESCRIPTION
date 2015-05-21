@@ -1,13 +1,11 @@
 Package: FishMaps
-Title: Proportional symbol mapping for fishery data
+Title: Proportional Symbol Mapping For Fishery Data
 Version: 0.3-0
 Authors@R: person("Fernando", "Mayer", email = "fernandomayer@gmail.com", role = c("aut", "cre"))
-Description: Proportional symbol mapping for fishery data (catch, effort
-	     and CPUE), using pre-defined or user-defined maps.
+Description: Proportional symbol mapping for fishery data (catch, effort and CPUE) It uses pre-defined or user-defined maps.
 Depends: R (>= 3.2.0)
 Imports:
-  lattice,
-  latticeExtra,
-  marelac
+    lattice,
+    latticeExtra,
+    marelac
 License: GPL-3
-LazyData: true
