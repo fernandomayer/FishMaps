@@ -2,12 +2,12 @@ README.md
 Rplots.pdf
 .gitignore
 .Rprofile
-.travis.yml
-.git/
-vignette/
-downloads/
-playground/
-data-raw/
+^\.travis\.yml$
+^\.git$
+^vignette$
+^downloads$
+^playground$
+^data-raw$
 # Emacs temp files
 \#*\#
 .\#*
