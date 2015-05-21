@@ -5,22 +5,27 @@
 
 source("R/levelmap.R")
 
-require(grid)
-require(lattice)
-require(latticeExtra)
-require(maps)
-require(mapdata)
-require(marelac)
-data(Bathymetry)
+## Para carregar as funcoes (simula o pacote instalado e carregado)
+devtools::load_all()
 
-dados <- read.csv("../data/mapa.latt.q.csv")
+devtools::document()
 
-load("data/BB.data.y.rda")
+## require(grid)
+## require(lattice)
+## require(latticeExtra)
+## require(maps)
+## require(mapdata)
+## require(marelac)
+## data(Bathymetry)
+
+## dados <- read.csv("../data/mapa.latt.q.csv")
+
+load("../data/BB.data.y.rda")
 args(levelmap)
 levelmap(cpue ~ lon + lat | year, data = BB.data.y,
          xlim = c(-60, -40), ylim = c(-35, -20),
          breaks = pretty(BB.data.y$cpue), jump = 2,
-         bathymetry = TRUE, bathymetry.seq = seq(0, 5000, 1000))
+         bathymetry = FALSE)
 
 
 ## Carrega a funcao

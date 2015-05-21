@@ -20,6 +20,10 @@
 ##'
 ##' @author Fernando Mayer
 ##'
+##' @import lattice
+##' @import latticeExtra
+##' @import marelac
+##'
 ##' @export
 levelmap <- function(x, data, xlim, ylim, breaks, jump,
                      key.space = "right",
@@ -36,7 +40,9 @@ levelmap <- function(x, data, xlim, ylim, breaks, jump,
     ## require(mapdata)
     ## require(marelac)
     ## Base de dados para os mapas
-    mm <- map(database = database, plot = FALSE, fill = TRUE)
+    load("R/sysdata.rda")
+    #data(worldHiresMapEnv)
+    mm <- match.arg(database)
     ## Define os ranges do mapa, e os labels para colocar nos graficos
     ## Isso precisa melhorar e ficar mais generico
     labsx <- seq(min(xlim), max(xlim), jump)
@@ -121,7 +127,7 @@ levelmap <- function(x, data, xlim, ylim, breaks, jump,
                        panel = function(x, y, z, mm, ...){
                            panel.levelplot(x, y, z, ...)
                            panel.grid(h = -length(labsx), v = -length(labsy), ...)
-                           panel.polygon(mm$x, mm$y, border = "black", col =
+                           panel.polygon(mm$lon, mm$lat, border = "black", col =
                                          "snow")
                            panel.zero.points(x, y, z, ...)
                        })
