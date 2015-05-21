@@ -5,30 +5,24 @@
 \title{Plots fishery data into maps}
 \usage{
 levelmap(x, data, xlim, ylim, breaks, jump, key.space = "right",
-  database = "world", bathymetry = FALSE, bathymetry.seq = NULL, ...)
+  database = c("world", "worldHires"))
 }
 \arguments{
-\item{x}{}
+\item{x}{fomula interface}
 
-\item{data}{}
+\item{data}{data frame}
 
-\item{xlim}{}
+\item{xlim}{x limits}
 
-\item{ylim}{}
+\item{ylim}{y limits}
 
-\item{breaks}{}
+\item{breaks}{class breaks}
 
-\item{jump}{}
+\item{jump}{gap for lat and lon}
 
-\item{key.space}{}
+\item{key.space}{place for the legend}
 
-\item{database}{}
-
-\item{bathymetry}{}
-
-\item{bathymetry.seq}{}
-
-\item{...}{}
+\item{database}{world or worldHires}
 }
 \value{
 A map with data

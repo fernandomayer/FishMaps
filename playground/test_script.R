@@ -3,29 +3,20 @@
 ## experimental and is used for tests and examples.
 ##======================================================================
 
-source("R/levelmap.R")
-
 ## Para carregar as funcoes (simula o pacote instalado e carregado)
 devtools::load_all()
-
+## Para atualizar a documentacao
 devtools::document()
+## Para conferir a documantacao
+devtools::check_doc()
+## Para conferir o pacote completo
+devtools::check()
 
-## require(grid)
-## require(lattice)
-## require(latticeExtra)
-## require(maps)
-## require(mapdata)
-## require(marelac)
-## data(Bathymetry)
-
-## dados <- read.csv("../data/mapa.latt.q.csv")
-
-load("../data/BB.data.y.rda")
+## testando a funcao levelmap
 args(levelmap)
 levelmap(cpue ~ lon + lat | year, data = BB.data.y,
          xlim = c(-60, -40), ylim = c(-35, -20),
-         breaks = pretty(BB.data.y$cpue), jump = 2,
-         bathymetry = FALSE)
+         breaks = pretty(BB.data.y$cpue), jump = 2)
 
 
 ## Carrega a funcao

@@ -2,5 +2,3 @@
 
 export(levelmap)
 import(lattice)
-import(latticeExtra)
-import(marelac)
