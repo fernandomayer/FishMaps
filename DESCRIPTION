@@ -6,8 +6,8 @@ Description: Proportional symbol mapping for fishery data. It uses
 	     pre-defined or user-defined maps.
 Depends: R (>= 3.2.0)
 Imports:
-    lattice,
-    latticeExtra,
-    marelac
+    grid
+    lattice
 License: GPL-3
 LazyData: true
+SysDataCompression: xz
