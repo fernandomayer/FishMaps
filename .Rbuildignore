@@ -8,7 +8,4 @@ Rplots.pdf
 ^downloads$
 ^playground$
 ^data-raw$
-# Emacs temp files
-\#*\#
-.\#*
 
