@@ -4,7 +4,7 @@
 \alias{levelmap}
 \title{Plots fishery data into maps}
 \usage{
-levelmap(x, data, xlim, ylim, breaks, jump, key.space = "right",
+levelmap(x, data, xlim, ylim, breaks, square = 1, key.space = "right",
   database = c("world", "worldHires"))
 }
 \arguments{
@@ -18,7 +18,7 @@ levelmap(x, data, xlim, ylim, breaks, jump, key.space = "right",
 
 \item{breaks}{class breaks}
 
-\item{jump}{gap for lat and lon}
+\item{square}{size of square}
 
 \item{key.space}{place for the legend}
 

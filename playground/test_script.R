@@ -14,9 +14,29 @@ devtools::check()
 
 ## testando a funcao levelmap
 args(levelmap)
+
+## BB YEAR
 levelmap(cpue ~ lon + lat | year, data = BB.data.y,
          xlim = c(-60, -40), ylim = c(-35, -20),
-         breaks = pretty(BB.data.y$cpue), jump = 2)
+         key.space = "right", database = "world",
+         breaks = pretty(BB.data.y$cpue), square = 1)
+
+## BB YEAR with 0
+str(BB.data.y)
+test1 <- BB.data.y
+idx <- sample(nrow(test1), 8)
+test1$cpue[idx] <- 0
+levelmap(cpue ~ lon + lat | year, data = test1,
+         xlim = c(-60, -40), ylim = c(-35, -20),
+         key.space = "right", database = "world",
+         breaks = pretty(test1$cpue), square = 1)
+
+
+## BB YEAR-QUARTER
+levelmap(cpue ~ lon + lat | year + quarter, data = BB.data.yq,
+         xlim = c(-60, -40), ylim = c(-35, -20),
+         key.space = "right", database = "world",
+         breaks = pretty(BB.data.yq$cpue), square = 1)
 
 
 ## Carrega a funcao
