@@ -33,7 +33,7 @@ levelmap <- function(x, data, xlim, ylim, breaks,
     labsx <- labs$labsx; labsxc <- labs$labsxc
     labsy <- labs$labsy; labsyc <- labs$labsyc
     ## main function
-    levelplot(x, data, map.db = database, aspect = "iso",
+    lev <- levelplot(x, data, map.db = database, aspect = "iso",
               as.table = TRUE, xlim = xlim, ylim = ylim,
               xlab = "Longitude", ylab = "Latitude",
               scales = list(
@@ -46,10 +46,23 @@ levelmap <- function(x, data, xlim, ylim, breaks,
               par.settings = list(layout.heights = list(top.padding = 0,
                                       bottom.padding = 0)),
               panel = function(x, y, z, map.db, ...){
-                  panel.levelplot(x, y, z, ...)
+                  #panel.levelplot(x, y, z, ...)
                   panel.grid(h = -length(labsx), v = -length(labsy), ...)
                   panel.polygon(map.db$lon, map.db$lat,
                                 border = "black", col = "snow", ...)
-                  panel.zero.points(x, y, z, ...)
+                  #panel.zero.points(x, y, z, ...)
               })
+    lev <- lev + latticeExtra::layer({
+        x <- as.numeric(x)[subscripts];
+        y <- as.numeric(y)[subscripts];
+        z <- as.numeric(z)[subscripts];
+        zero <- (z == 0L);
+        if(any(isTRUE(zero))){
+            panel.levelplot(x[!zero], y[!zero], z[!zero], ...)
+            panel.points(x[zero], y[zero], pch = 4, ...)
+        } else{
+            panel.levelplot(x[subscript], y[subscript], z[subscript], ...)
+        }
+    })
+    return(lev)
 }

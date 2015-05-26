@@ -31,6 +31,15 @@ levelmap(cpue ~ lon + lat | year, data = test1,
          key.space = "right", database = "world",
          breaks = pretty(test1$cpue), square = 1)
 
+## BB YEAR with 0 and NA
+test2 <- test1
+idx <- sample(nrow(test2), 5)
+test2$cpue[idx] <- NA
+levelmap(cpue ~ lon + lat | year, data = test2,
+         xlim = c(-60, -40), ylim = c(-35, -20),
+         key.space = "right", database = "world",
+         breaks = pretty(test2$cpue), square = 1)
+
 
 ## BB YEAR-QUARTER
 levelmap(cpue ~ lon + lat | year + quarter, data = BB.data.yq,

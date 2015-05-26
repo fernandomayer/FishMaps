@@ -21,9 +21,9 @@ panel.zero.points <- function(x, y, z, subscripts, ...){
         if(z[i] == 0L){
             grid::grid.points(x = x[i], y = y[i], pch = "+",
                               size = grid::unit(1, "native"))
-        ## } else if(is.na(z[i])){
-        ##     grid::grid.points(x = x[i], y = y[i], pch = "-",
-        ##                       size = grid::unit(1, "native"))
+        } else if(is.na(z[i])){
+            grid::grid.points(x = x[i], y = y[i], pch = "-",
+                              size = grid::unit(1, "native"))
         } else{
             grid::grid.points(x = x[i], y = y[i], pch = "")
         }
