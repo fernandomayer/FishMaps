@@ -21,6 +21,36 @@ levelmap(cpue ~ lon + lat | year, data = BB.data.y,
          key.space = "right", database = "world",
          breaks = pretty(BB.data.y$cpue), square = 1)
 
+x <- cpue ~ lon + lat
+class(x)
+terms(x)
+attr(x, "factors")
+attr(x, "response")
+z <- all.vars(x)[1]
+BB.data.y[, z]
+print(x)
+print(z)
+
+data <- test1
+
+fun <- function(x, data){
+    form <- all.vars(x)[1]
+    z <- data[, form]
+    if(any(z == 0L)){
+        data <- subset(data, get(form) == 0)
+        m0 <- lm(x, data)
+    } else{
+        m0 <- lm(x, data)
+    }
+    return(coef(m0))
+}
+
+y <- fun(cpue ~ lon + lat, data = BB.data.y)
+y
+
+a <- fun(cpue ~ lon + lat, data = test1)
+a
+
 ## BB YEAR with 0
 str(BB.data.y)
 test1 <- BB.data.y
@@ -30,6 +60,62 @@ levelmap(cpue ~ lon + lat | year, data = test1,
          xlim = c(-60, -40), ylim = c(-35, -20),
          key.space = "right", database = "world",
          breaks = pretty(test1$cpue), square = 1)
+
+## set X and Y ticks and labels
+database = world
+xlim = c(-60, -40); ylim = c(-35, -20)
+key.space = "right"
+breaks = pretty(test1$cpue); square = 1
+labs <- xyticks(xlim = xlim, ylim = ylim, square = square)
+labsx <- labs$labsx; labsxc <- labs$labsxc
+labsy <- labs$labsy; labsyc <- labs$labsyc
+## get formula
+x <- cpue ~ lon + lat | year
+class(x)
+resp <- all.vars(x)[1]
+resp.vec <- test1[, resp]
+if(any(resp.vec == 0)){
+    da.zero <- subset(test1, get(resp) == 0)
+    da.nzero <- subset(test1, get(resp) != 0)
+} else{
+    da <- test1
+}
+
+lev <- levelplot(x, data = da.nzero, map.db = database, aspect = "iso",
+                 as.table = TRUE, xlim = xlim, ylim = ylim,
+                 xlab = "Longitude", ylab = "Latitude",
+                 scales = list(
+                     x = list(at = labsx, labels = labsxc),
+                     y = list(at = labsy, labels = labsyc)),
+                 strip = strip.custom(bg = "lightgrey"),
+                 at = breaks, colorkey = list(space = key.space),
+                 col.regions = grey.colors(length(breaks) - 1,
+                     start = 0.7, end = 0.1),
+                 par.settings = list(layout.heights = list(top.padding = 0,
+                                         bottom.padding = 0)),
+                 #subscripts = TRUE,
+                 panel = function(x, y, z, map.db, ...){
+                     panel.levelplot(x, y, z, ...)
+                     panel.grid(h = -length(labsx), v = -length(labsy), ...)
+                     panel.polygon(map.db$lon, map.db$lat,
+                                   border = "black", col = "snow", ...)
+                                        #panel.zero.points(x, y, z, ...)
+                 })
+lev
+
+terms.form <- all.vars(x)
+resp <- terms.form[1]
+lon <- terms.form[2]
+lat <- terms.form[3]
+pipe <- terms.form[4:length(terms.form)]
+
+xy.form <- as.formula(paste("lat ~ lon", pipe, sep = " | "))
+lev + as.layer(xyplot(xy.form, data = da.zero, pch = 4, col =1))
+
+lev + as.layer(xyplot(lat ~ lon | year, data = da.zero, pch = 4, col =1))
+lev + layer(panel.points(x = lon, y = lat, pch = 4, col = "black"),
+            data = da.zero)
+
 
 ## BB YEAR with 0 and NA
 test2 <- test1
@@ -46,6 +132,74 @@ levelmap(cpue ~ lon + lat | year + quarter, data = BB.data.yq,
          xlim = c(-60, -40), ylim = c(-35, -20),
          key.space = "right", database = "world",
          breaks = pretty(BB.data.yq$cpue), square = 1)
+
+str(BB.data.yq)
+test2 <- BB.data.yq
+idx <- sample(nrow(test2), 18)
+test2$cpue[idx] <- 0
+levelmap(cpue ~ lon + lat | year + quarter, data = test2,
+         xlim = c(-60, -40), ylim = c(-35, -20),
+         key.space = "right", database = "world",
+         breaks = pretty(test2$cpue), square = 1)
+
+## set X and Y ticks and labels
+database = world
+xlim = c(-60, -40); ylim = c(-35, -20)
+key.space = "right"
+breaks = pretty(test2$cpue); square = 1
+labs <- xyticks(xlim = xlim, ylim = ylim, square = square)
+labsx <- labs$labsx; labsxc <- labs$labsxc
+labsy <- labs$labsy; labsyc <- labs$labsyc
+## get formula
+x <- cpue ~ lon + lat | year*quarter
+class(x)
+all.vars(x)
+resp <- all.vars(x)[1]
+resp.vec <- test2[, resp]
+if(any(resp.vec == 0)){
+    da.zero <- subset(test2, get(resp) == 0)
+    da.nzero <- subset(test2, get(resp) != 0)
+} else{
+    da <- test2
+}
+
+lev <- levelplot(x, data = da.nzero, map.db = database, aspect = "iso",
+                 as.table = TRUE, xlim = xlim, ylim = ylim,
+                 xlab = "Longitude", ylab = "Latitude",
+                 scales = list(
+                     x = list(at = labsx, labels = labsxc),
+                     y = list(at = labsy, labels = labsyc)),
+                 strip = strip.custom(bg = "lightgrey"),
+                 at = breaks, colorkey = list(space = key.space),
+                 col.regions = grey.colors(length(breaks) - 1,
+                     start = 0.7, end = 0.1),
+                 par.settings = list(layout.heights = list(top.padding = 0,
+                                         bottom.padding = 0)),
+                 #subscripts = TRUE,
+                 panel = function(x, y, z, map.db, ...){
+                     panel.levelplot(x, y, z, ...)
+                     panel.grid(h = -length(labsx), v = -length(labsy), ...)
+                     panel.polygon(map.db$lon, map.db$lat,
+                                   border = "black", col = "snow", ...)
+                                        #panel.zero.points(x, y, z, ...)
+                 })
+lev
+
+terms.form <- all.vars(x)
+resp <- terms.form[1]
+lon <- terms.form[2]
+lat <- terms.form[3]
+pipe <- terms.form[4:length(terms.form)]
+pipe <- ifelse(length(pipe) == 1,
+               pipe,
+               paste(pipe, collapse = " + "))
+
+xy.form <- as.formula(paste("lat ~ lon", pipe, sep = " | "))
+lev + as.layer(xyplot(xy.form, data = da.zero, pch = 4, col =1))
+
+lev + as.layer(xyplot(lat ~ lon | year, data = da.zero, pch = 4, col =1))
+lev + layer(panel.points(x = lon, y = lat, pch = 4, col = "black"),
+            data = da.zero)
 
 
 ## Carrega a funcao
