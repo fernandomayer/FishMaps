@@ -24,16 +24,7 @@
 levelmap <- function(x, data, xlim, ylim, breaks,
                      square = 1, key.space = "right",
                      database = c("world", "worldHires")){
-    ## get formula
-    terms.form <- all.vars(x)
-    resp <- terms.form[1]
-    lon <- terms.form[2]
-    lat <- terms.form[3]
-    pipe <- terms.form[4:length(terms.form)]
-    pipe <- ifelse(length(pipe) == 1,
-               pipe,
-               paste(pipe, collapse = " + "))
-    resp.vec <- data[, resp]
+
     if(any(resp.vec == 0)){
         da.zero <- subset(data, get(resp) == 0)
         da.nzero <- subset(data, get(resp) != 0)
@@ -96,15 +87,3 @@ levelmap <- function(x, data, xlim, ylim, breaks,
     }
     return(lev)
 }
-
-
-## x <- as.numeric(x)[subscripts];
-## y <- as.numeric(y)[subscripts];
-## z <- as.numeric(z)[subscripts];
-## zero <- (z == 0L);
-## #if(any(isTRUE(zero))){
-## #    panel.levelplot(x[!zero], y[!zero], z[!zero], ...)
-##     panel.points(x[zero], y[zero], pch = 4, col = "black", ...)
-## #} else{
-## #    panel.levelplot(x[subscript], y[subscript], z[subscript], ...)
-## #}

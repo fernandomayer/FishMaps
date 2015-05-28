@@ -21,6 +21,90 @@ levelmap(cpue ~ lon + lat | year, data = BB.data.y,
          key.space = "right", database = "world",
          breaks = pretty(BB.data.y$cpue), square = 1)
 
+## BB YEAR with 0
+str(BB.data.y)
+test1 <- BB.data.y
+idx <- sample(nrow(test1), 8)
+test1$cpue[idx] <- 0
+levelmap(cpue ~ lon + lat | year, data = test1,
+         xlim = c(-60, -40), ylim = c(-35, -20),
+         key.space = "right", database = "world",
+         breaks = pretty(test1$cpue), square = 1)
+
+## set X and Y ticks and labels
+database = world
+xlim = c(-60, -40); ylim = c(-35, -20)
+key.space = "right"
+breaks = pretty(test1$cpue); square = 1
+labs <- xyticks(xlim = xlim, ylim = ylim, square = square)
+labsx <- labs$labsx; labsxc <- labs$labsxc
+labsy <- labs$labsy; labsyc <- labs$labsyc
+## get formula
+x <- cpue ~ lon + lat | year
+class(x)
+resp <- all.vars(x)[1]
+resp.vec <- test1[, resp]
+
+lev <- levelplot(x, data = test1, map.db = database, aspect = "iso",
+                 as.table = TRUE, xlim = xlim, ylim = ylim,
+                 xlab = "Longitude", ylab = "Latitude",
+                 scales = list(
+                     x = list(at = labsx, labels = labsxc),
+                     y = list(at = labsy, labels = labsyc)),
+                 strip = strip.custom(bg = "lightgrey"),
+                 at = breaks, colorkey = list(space = key.space),
+                 col.regions = grey.colors(length(breaks) - 1,
+                     start = 0.7, end = 0.1),
+                 par.settings = list(layout.heights = list(top.padding = 0,
+                                         bottom.padding = 0)),
+                 subscripts = TRUE,
+                 #cpue = test1$cpue,
+                 panel = function(x, y, z, map.db, subscripts, ...){
+                     ## x <- as.numeric(x)[subscripts]
+                     ## y <- as.numeric(y)[subscripts]
+                     ## z <- as.numeric(z)[subscripts]
+                     iszero <- (z == 0)[subscripts]
+                     print(iszero)
+                     print(subscripts[iszero])
+                     ## print(y[!iszero])
+                     ## print(z[!iszero])
+                     tmp.xn <- x[!iszero]
+                     tmp.yn <- y[!iszero]
+                     tmp.zn <- z[!iszero]
+                     panel.levelplot(tmp.xn, tmp.yn,
+                                     tmp.zn,
+                                     subscripts, ...)
+                     tmp.xz <- x[iszero]
+                     #tmp.xz <- tmp.xz[subscripts]
+                     tmp.yz <- y[iszero]
+                     #tmp.yz <- tmp.yz[subscripts]
+                     print(tmp.xz)
+                     panel.text(tmp.xz, tmp.yz, tmp.xz[subscripts])
+                     panel.grid(h = -length(labsx), v = -length(labsy), ...)
+                     panel.polygon(map.db$lon, map.db$lat,
+                                   border = "black", col = "snow", ...)
+                                        #panel.zero.points(x, y, z, ...)
+                 })
+lev
+
+## get formula
+terms.form <- all.vars(x)
+resp <- terms.form[1]
+lon <- terms.form[2]
+lat <- terms.form[3]
+pipe <- terms.form[4:length(terms.form)]
+pipe <- ifelse(length(pipe) == 1,
+               pipe,
+               paste(pipe, collapse = " + "))
+
+## uma forma mais eficiente com latticeParseFormula
+form <- latticeParseFormula(x, data = test1, dimension = 3,
+                            subset = test1$cpue == 0)
+
+
+xy.form <- as.formula(paste("lat ~ lon", pipe, sep = " | "))
+lev + as.layer(xyplot(xy.form, data = da.zero, pch = 4, col =1))
+
 x <- cpue ~ lon + lat
 class(x)
 terms(x)
@@ -103,11 +187,20 @@ lev <- levelplot(x, data = da.nzero, map.db = database, aspect = "iso",
                  })
 lev
 
+## get formula
 terms.form <- all.vars(x)
 resp <- terms.form[1]
 lon <- terms.form[2]
 lat <- terms.form[3]
 pipe <- terms.form[4:length(terms.form)]
+pipe <- ifelse(length(pipe) == 1,
+               pipe,
+               paste(pipe, collapse = " + "))
+
+## uma forma mais eficiente com latticeParseFormula
+form <- latticeParseFormula(x, data = test1, dimension = 3,
+                            subset = test1$cpue == 0)
+
 
 xy.form <- as.formula(paste("lat ~ lon", pipe, sep = " | "))
 lev + as.layer(xyplot(xy.form, data = da.zero, pch = 4, col =1))
