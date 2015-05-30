@@ -2,4 +2,3 @@
 
 export(levelmap)
 import(lattice)
-importFrom(latticeExtra,as.layer)

@@ -18,19 +18,11 @@
 ##' @author Fernando Mayer
 ##'
 ##' @import lattice
-##' @importFrom latticeExtra as.layer
 ##'
 ##' @export
 levelmap <- function(x, data, xlim, ylim, breaks,
                      square = 1, key.space = "right",
                      database = c("world", "worldHires")){
-
-    if(any(resp.vec == 0)){
-        da.zero <- subset(data, get(resp) == 0)
-        da.nzero <- subset(data, get(resp) != 0)
-    } else{
-        da <- data
-    }
     ## choose database
     database <- match.arg(database)
     switch(database,
@@ -40,50 +32,26 @@ levelmap <- function(x, data, xlim, ylim, breaks,
     labs <- xyticks(xlim = xlim, ylim = ylim, square = square)
     labsx <- labs$labsx; labsxc <- labs$labsxc
     labsy <- labs$labsy; labsyc <- labs$labsyc
+    ## define variables
+    # middle of a square - to be used inside the panel function
+    msq <- square/2
+    col.reg <- grey.colors(length(breaks) - 1,
+                           start = 0.7, end = 0.1)
     ## main function
-    if(any(resp.vec == 0)){
-        lev <- levelplot(x, data = da.nzero, map.db = database, aspect = "iso",
-                         as.table = TRUE, xlim = xlim, ylim = ylim,
-                         xlab = "Longitude", ylab = "Latitude",
-                         scales = list(
-                             x = list(at = labsx, labels = labsxc),
-                             y = list(at = labsy, labels = labsyc)),
-                         strip = strip.custom(bg = "lightgrey"),
-                         at = breaks, colorkey = list(space = key.space),
-                         col.regions = grey.colors(length(breaks) - 1,
-                             start = 0.7, end = 0.1),
-                         par.settings = list(layout.heights = list(top.padding = 0,
-                                                 bottom.padding = 0)),
-                         panel = function(x, y, z, map.db, ...){
-                             panel.levelplot(x, y, z, ...)
-                             panel.grid(h = -length(labsx), v = -length(labsy), ...)
-                             panel.polygon(map.db$lon, map.db$lat,
-                                           border = "black", col = "snow", ...)
-                                        #panel.zero.points(x, y, z, ...)
-                         })
-        xy.form <- as.formula(paste("lat ~ lon", pipe, sep = " | "))
-        lev <- lev + as.layer(
-            xyplot(xy.form, pch = 4, col = "black", data = da.zero))
-    } else{
-        lev <- levelplot(x, data = da, map.db = database, aspect = "iso",
-                         as.table = TRUE, xlim = xlim, ylim = ylim,
-                         xlab = "Longitude", ylab = "Latitude",
-                         scales = list(
-                             x = list(at = labsx, labels = labsxc),
-                             y = list(at = labsy, labels = labsyc)),
-                         strip = strip.custom(bg = "lightgrey"),
-                         at = breaks, colorkey = list(space = key.space),
-                         col.regions = grey.colors(length(breaks) - 1,
-                             start = 0.7, end = 0.1),
-                         par.settings = list(layout.heights = list(top.padding = 0,
-                                                 bottom.padding = 0)),
-                         panel = function(x, y, z, map.db, ...){
-                             panel.levelplot(x, y, z, ...)
-                             panel.grid(h = -length(labsx), v = -length(labsy), ...)
-                             panel.polygon(map.db$lon, map.db$lat,
-                                           border = "black", col = "snow", ...)
-                                        #panel.zero.points(x, y, z, ...)
-                         })
-    }
-    return(lev)
-}
+    levelplot(x, data = data, map.db = database, msq = msq,
+              col.reg = col.reg, breaks = breaks,
+              labsx = labsx, labsy = labsy,
+              aspect = "iso",
+              as.table = TRUE, xlim = xlim, ylim = ylim,
+              xlab = "Longitude", ylab = "Latitude",
+              scales = list(
+                  x = list(at = labsx, labels = labsxc),
+                  y = list(at = labsy, labels = labsyc)),
+              strip = strip.custom(bg = "lightgrey"),
+              at = breaks, colorkey = list(space = key.space),
+              col.regions = col.reg,
+              par.settings = list(layout.heights = list(top.padding = 0,
+                                      bottom.padding = 0)),
+              subscripts = TRUE,
+              panel = panel.fishmaps)
+ }

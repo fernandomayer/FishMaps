@@ -21,6 +21,31 @@ levelmap(cpue ~ lon + lat | year, data = BB.data.y,
          key.space = "right", database = "world",
          breaks = pretty(BB.data.y$cpue), square = 1)
 
+database = world
+xlim = c(-60, -40); ylim = c(-35, -20)
+key.space = "right"
+breaks = pretty(BB.data.y$cpue); square = 1
+labs <- xyticks(xlim = xlim, ylim = ylim, square = square)
+labsx <- labs$labsx; labsxc <- labs$labsxc
+labsy <- labs$labsy; labsyc <- labs$labsyc
+
+lev <- levelplot(x, data = BB.data.y, map.db = database, aspect = "iso",
+                 as.table = TRUE, xlim = xlim, ylim = ylim,
+                 xlab = "Longitude", ylab = "Latitude",
+                 scales = list(
+                     x = list(at = labsx, labels = labsxc),
+                     y = list(at = labsy, labels = labsyc)),
+                 strip = strip.custom(bg = "lightgrey"),
+                 at = breaks, colorkey = list(space = key.space),
+                 col.regions = grey.colors(length(breaks) - 1,
+                     start = 0.7, end = 0.1),
+                 par.settings = list(layout.heights = list(top.padding = 0,
+                                         bottom.padding = 0)),
+                 subscripts = TRUE,
+                 panel = panel.fishmaps)
+lev
+
+
 ## BB YEAR with 0
 str(BB.data.y)
 test1 <- BB.data.y
@@ -30,6 +55,11 @@ levelmap(cpue ~ lon + lat | year, data = test1,
          xlim = c(-60, -40), ylim = c(-35, -20),
          key.space = "right", database = "world",
          breaks = pretty(test1$cpue), square = 1)
+
+levelmap(cpue ~ lon + lat | year, data = BB.data.y,
+         xlim = c(-60, -40), ylim = c(-35, -20),
+         key.space = "right", database = "world",
+         breaks = pretty(BB.data.y$cpue), square = 1)
 
 ## set X and Y ticks and labels
 database = world
@@ -60,12 +90,12 @@ lev <- levelplot(x, data = test1, map.db = database, aspect = "iso",
                  subscripts = TRUE,
                  #cpue = test1$cpue,
                  panel = function(x, y, z, map.db, subscripts, ...){
-                     ## x <- as.numeric(x)[subscripts]
-                     ## y <- as.numeric(y)[subscripts]
-                     ## z <- as.numeric(z)[subscripts]
-                     iszero <- (z == 0)[subscripts]
+                     x <- as.numeric(x)[subscripts]
+                     y <- as.numeric(y)[subscripts]
+                     z <- as.numeric(z)[subscripts]
+                     iszero <- (z == 0)#[subscripts]
                      print(iszero)
-                     print(subscripts[iszero])
+                     print(subscripts)
                      ## print(y[!iszero])
                      ## print(z[!iszero])
                      tmp.xn <- x[!iszero]
@@ -73,19 +103,39 @@ lev <- levelplot(x, data = test1, map.db = database, aspect = "iso",
                      tmp.zn <- z[!iszero]
                      panel.levelplot(tmp.xn, tmp.yn,
                                      tmp.zn,
-                                     subscripts, ...)
+                                     subscripts = T, ...)
                      tmp.xz <- x[iszero]
                      #tmp.xz <- tmp.xz[subscripts]
                      tmp.yz <- y[iszero]
                      #tmp.yz <- tmp.yz[subscripts]
                      print(tmp.xz)
-                     panel.text(tmp.xz, tmp.yz, tmp.xz[subscripts])
+                     print(tmp.yz)
+                     tmp.zz <- z[iszero]
+                     print(tmp.zz)
+                     panel.points(tmp.xz, tmp.yz, pch = 4)
                      panel.grid(h = -length(labsx), v = -length(labsy), ...)
                      panel.polygon(map.db$lon, map.db$lat,
                                    border = "black", col = "snow", ...)
                                         #panel.zero.points(x, y, z, ...)
                  })
 lev
+
+lev <- levelplot(x, data = test1, map.db = database, aspect = "iso",
+                 as.table = TRUE, xlim = xlim, ylim = ylim,
+                 xlab = "Longitude", ylab = "Latitude",
+                 scales = list(
+                     x = list(at = labsx, labels = labsxc),
+                     y = list(at = labsy, labels = labsyc)),
+                 strip = strip.custom(bg = "lightgrey"),
+                 at = breaks, colorkey = list(space = key.space),
+                 col.regions = grey.colors(length(breaks) - 1,
+                     start = 0.7, end = 0.1),
+                 par.settings = list(layout.heights = list(top.padding = 0,
+                                         bottom.padding = 0)),
+                 subscripts = TRUE,
+                 panel = panel.fishmaps)
+lev
+
 
 ## get formula
 terms.form <- all.vars(x)
@@ -226,14 +276,79 @@ levelmap(cpue ~ lon + lat | year + quarter, data = BB.data.yq,
          key.space = "right", database = "world",
          breaks = pretty(BB.data.yq$cpue), square = 1)
 
+database = world
+xlim = c(-60, -40); ylim = c(-35, -20)
+key.space = "right"
+breaks = pretty(BB.data.yq$cpue); square = 1
+labs <- xyticks(xlim = xlim, ylim = ylim, square = square)
+labsx <- labs$labsx; labsxc <- labs$labsxc
+labsy <- labs$labsy; labsyc <- labs$labsyc
+x <- cpue ~ lon + lat | year * quarter
+
+lev <- levelplot(x, data = BB.data.yq, map.db = database, aspect = "iso",
+                 as.table = TRUE, xlim = xlim, ylim = ylim,
+                 xlab = "Longitude", ylab = "Latitude",
+                 scales = list(
+                     x = list(at = labsx, labels = labsxc),
+                     y = list(at = labsy, labels = labsyc)),
+                 strip = strip.custom(bg = "lightgrey"),
+                 at = breaks, colorkey = list(space = key.space),
+                 col.regions = grey.colors(length(breaks) - 1,
+                     start = 0.7, end = 0.1),
+                 par.settings = list(layout.heights = list(top.padding = 0,
+                                         bottom.padding = 0)),
+                 subscripts = TRUE,
+                 panel = panel.fishmaps)
+lev
+
+
 str(BB.data.yq)
 test2 <- BB.data.yq
-idx <- sample(nrow(test2), 18)
+idx <- sample(nrow(test2), 15)
 test2$cpue[idx] <- 0
 levelmap(cpue ~ lon + lat | year + quarter, data = test2,
          xlim = c(-60, -40), ylim = c(-35, -20),
          key.space = "right", database = "world",
          breaks = pretty(test2$cpue), square = 1)
+
+database = world
+xlim = c(-60, -40); ylim = c(-35, -20)
+key.space = "right"
+breaks = pretty(test2$cpue); square = 1
+labs <- xyticks(xlim = xlim, ylim = ylim, square = square)
+labsx <- labs$labsx; labsxc <- labs$labsxc
+labsy <- labs$labsy; labsyc <- labs$labsyc
+x <- cpue ~ lon + lat | year * quarter
+
+col.regions <- grey.colors(length(breaks) - 1, start = 0.7, end = 0.1)
+
+lev <- levelplot(x, data = test2, map.db = database, aspect = "iso",
+                 as.table = TRUE, xlim = xlim, ylim = ylim,
+                 xlab = "Longitude", ylab = "Latitude",
+                 scales = list(
+                     x = list(at = labsx, labels = labsxc),
+                     y = list(at = labsy, labels = labsyc)),
+                 strip = strip.custom(bg = "lightgrey"),
+                 at = breaks, colorkey = list(space = key.space),
+                 col.regions = col.regions,
+                 par.settings = list(layout.heights = list(top.padding = 0,
+                                         bottom.padding = 0)),
+                 subscripts = TRUE,
+                 panel = panel.fishmaps)
+lev
+
+xyplot(lat ~ lon | year * quarter, data = test2, aspect="iso",
+       col = col.regions, colorkey = list(space = key.space),
+       panel = panel.rect, height = 1, width = 1)
+
+u = runif(10) * 10
+v = runif(10) * 10
+z = runif(10)
+levelplot ( z ~ u + v, aspect="iso" )
+xyplot(v ~ u, aspect="iso",
+       col = level.colors(z, at = pretty(z,15)),
+       panel = panel.rect, height = 1, width = 1)
+
 
 ## set X and Y ticks and labels
 database = world
