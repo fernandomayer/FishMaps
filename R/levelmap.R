@@ -1,4 +1,4 @@
-##' @title Plots Fishery Data Into Maps.
+##' @title Plots Fishery Data into Maps.
 ##' @name levelmap
 ##'
 ##' @description Plots georeferenced fishery data (e.g. catch, effort
@@ -8,7 +8,7 @@
 ##' degrees). Coastlines are drawn to display the map, based on two
 ##' databases: maps::world (lower resolution) and mapdata::worldHires
 ##' (higher resolution), although none of these packages are required
-##' since the databases are buit-in FishMaps.
+##' since the databases are incorporated inside FishMaps.
 ##'
 ##' @param x A lattice fomula interface, usually \code{z ~ x + y} where
 ##' z is the response variable to be plotted, x are the longitude
@@ -41,7 +41,26 @@
 ##' @param ... Other arguments passed to
 ##' \code{\link[lattice]{levelplot}}.
 ##'
-##' @details Detail the format of lat/lon points.
+##' @details
+##' Given a defined resolution of your data, in which here I will call
+##' a square, the latitude and longitude points must be centered in the
+##' middle of the squares.
+##'
+##' Example 1: if your data is in a resolution of 1x1 degrees, then to
+##' plot data correctly the latitude and longitude points must be
+##' centered such as -27.5/-47.5 for the square with edges -27.0/-47
+##' (lat/long), and use the argument \code{square = 1}.
+##'
+##' Example 2: if your data is in a 5x5 degree squares, then you should
+##' have -27.5/-42.5 for the square with edges -25.0/-40.0 (lat/long),
+##' and use the argument \code{square = 5}.
+##'
+##' @source The databases \code{"world"} and \code{"worldHires"} were
+##' extracted from the databases of the same names in packages
+##' \code{maps} and \code{mapdata}, respectively. These databases are
+##' from the CIA World Data Bank II, which are in public domain and
+##' currently (mid-2003) available at
+##' \url{http://www.evl.uic.edu/pape/data/WDB}.
 ##'
 ##' @return A figure with the map(s) and the data plotted in levels.
 ##'

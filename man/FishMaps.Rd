@@ -4,7 +4,7 @@
 \name{FishMaps}
 \alias{FishMaps}
 \alias{FishMaps-package}
-\title{Plots Fishery Data Into Maps.}
+\title{Plots Fishery Data into Maps.}
 \description{
 Plots georeferenced fishery data (e.g. catch, effort
 and CPUE) into maps. This is the lattice version of a previous

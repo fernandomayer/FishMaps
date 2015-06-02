@@ -1,5 +1,5 @@
 Package: FishMaps
-Title: Proportional Symbol Mapping For Fishery Data
+Title: Plots Fishery Data into Maps
 Version: 0.3-0
 Authors@R: person("Fernando", "Mayer", email = "fernandomayer@gmail.com", role = c("aut", "cre"))
 Description: Plots georeferenced fishery data into maps. This package
