@@ -1,7 +1,8 @@
-##' @title Proportional symbol mapping for fishery data in batch mode
+##' @title Plots Fishery Data Into Maps.
 ##'
-##' @description Proportional symbol mapping for fishery data in batch
-##' mode (lattice version)
+##' @description Plots georeferenced fishery data (e.g. catch, effort
+##' and CPUE) into maps. This is the lattice version of a previous
+##' FishMaps version based on traditional grid graphics.
 ##'
 ##' @docType package
 ##' @name FishMaps
@@ -11,7 +12,6 @@ NULL
 ##'
 ##' Skipjack tuna CPUE by year, caught by the brazilian baitboat fleet, based
 ##' at Itajai (SC) harbor.
-##'
 ##'
 ##' @name BB.data.y
 ##' @docType data
@@ -23,7 +23,7 @@ NULL
 ##'   \item lon: a numeric vector
 ##'   \item cpue: a numeric vector
 ##' }
-##' @source Randomly generated data.
+##' @source Actually this is some randomly generated data.
 ##' @keywords datasets
 ##' @examples
 ##'
@@ -37,7 +37,6 @@ NULL
 ##' Skipjack tuna CPUE by quarter and year, caught by the brazilian baitboat
 ##' fleet, based at Itajai (SC) harbor.
 ##'
-##'
 ##' @name BB.data.yq
 ##' @docType data
 ##' @usage data(BB.data.yq)
@@ -49,7 +48,7 @@ NULL
 ##'   \item lon: a numeric vector
 ##'   \item cpue: a numeric vector
 ##' }
-##' @source Randomly generated data.
+##' @source Actually this is some randomly generated data.
 ##' @keywords datasets
 ##' @examples
 ##'
@@ -63,7 +62,6 @@ NULL
 ##' Swordfish CPUE by year, caught by the brazilian longline fleet, based at
 ##' Itajai (SC) harbor.
 ##'
-##'
 ##' @name LL.data.y
 ##' @docType data
 ##' @usage data(LL.data.y)
@@ -75,7 +73,7 @@ NULL
 ##'   \item lon: a numeric vector
 ##'   \item cpue: a numeric vector
 ##' }
-##' @source Randomly generated data.
+##' @source Actually this is some randomly generated data.
 ##' @keywords datasets
 ##' @examples
 ##'
@@ -88,7 +86,6 @@ NULL
 ##'
 ##' Swordfish CPUE by year and quarter, caught by the brazilian longline fleet,
 ##' based at Itajai (SC) harbor.
-##'
 ##'
 ##' @name LL.data.yq
 ##' @docType data
@@ -103,7 +100,7 @@ NULL
 ##' \item lon: a numeric vector
 ##' \item cpue a numeric vector
 ##' }
-##' @source Randomly generated data.
+##' @source Actually this is some randomly generated data.
 ##' @keywords datasets
 ##' @examples
 ##'

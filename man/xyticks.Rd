@@ -2,7 +2,7 @@
 % Please edit documentation in R/xyticks.R
 \name{xyticks}
 \alias{xyticks}
-\title{Creates the ticks for the maps}
+\title{Creates the ticks for the maps.}
 \usage{
 xyticks(xlim, ylim, square)
 }
@@ -25,6 +25,6 @@ Creates the ticks and labels to print in the maps. This
 is an internal function.
 }
 \author{
-Fernando Mayer
+Fernando Mayer \email{fernandomayer@gmail.com}
 }
 

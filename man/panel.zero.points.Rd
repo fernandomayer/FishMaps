@@ -7,24 +7,21 @@
 panel.zero.points(x, y, z, subscripts, ...)
 }
 \arguments{
-\item{x}{from lattice fomrmula x}
+\item{x}{From lattice fomrmula x.}
 
-\item{y}{from lattice fomrmula y}
+\item{y}{From lattice fomrmula y.}
 
-\item{z}{from lattice fomrmula z}
+\item{z}{From lattice fomrmula z.}
 
-\item{subscripts}{lattice subscripts}
+\item{subscripts}{Lattice panbel subscripts.}
 
-\item{...}{other arguments passed to other lattice panels}
-}
-\value{
-Nothing.
+\item{...}{Other arguments passed to lattice panel functions.}
 }
 \description{
 A lattice panel function to plot special characters to
-maps when data is zero
+maps when data is zero.
 }
 \author{
-Fernando Mayer
+Fernando Mayer \email{fernandomayer@gmail.com}
 }
 

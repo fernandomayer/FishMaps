@@ -138,8 +138,10 @@ levelmap(cpue ~ lon + lat | year + quarter, data = long.line.yq0na,
 ##----------------------------------------------------------------------
 
 
-
-# base de dados para o mapa
+##----------------------------------------------------------------------
+## Base de dados para o mapa
+library(maps)
 library(mapdata)
 mm <- map("world", plot = FALSE, fill = TRUE)
+##----------------------------------------------------------------------
 

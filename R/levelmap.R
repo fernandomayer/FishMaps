@@ -41,11 +41,34 @@
 ##' @param ... Other arguments passed to
 ##' \code{\link[lattice]{levelplot}}.
 ##'
+##' @details Detail the format of lat/lon points.
+##'
 ##' @return A figure with the map(s) and the data plotted in levels.
 ##'
 ##' @author Fernando Mayer \email{fernandomayer@@gmail.com}
 ##'
 ##' @seealso \code{\link[lattice]{levelplot}}, \code{\link[lattice]{xyplot}}
+##'
+##' @examples
+##' levelmap(cpue ~ lon + lat | year, data = BB.data.y,
+##'          xlim = c(-60, -40), ylim = c(-35, -20),
+##'          key.space = "right", database = "world",
+##'          breaks = pretty(BB.data.y$cpue), square = 1)
+##'
+##' levelmap(cpue ~ lon + lat | year + quarter, data = BB.data.yq,
+##'          xlim = c(-60, -40), ylim = c(-35, -20),
+##'          key.space = "right", database = "world",
+##'          breaks = pretty(BB.data.yq$cpue), square = 1)
+##'
+##' levelmap(cpue ~ lon + lat | year, data = LL.data.y,
+##'          xlim = c(-60, -20), ylim = c(-50, -10),
+##'          key.space = "right", database = "world",
+##'          breaks = pretty(LL.data.y$cpue), square = 5)
+##'
+##' levelmap(cpue ~ lon + lat | year + quarter, data = LL.data.yq,
+##'          xlim = c(-60, -20), ylim = c(-50, -10),
+##'          key.space = "right", database = "world",
+##'          breaks = pretty(LL.data.yq$cpue), square = 5)
 ##'
 ##' @import lattice
 ##'

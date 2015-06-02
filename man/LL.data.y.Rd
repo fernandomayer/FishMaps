@@ -13,7 +13,7 @@
   \item cpue: a numeric vector
 }}
 \source{
-Randomly generated data.
+Actually this is some randomly generated data.
 }
 \usage{
 data(LL.data.y)
