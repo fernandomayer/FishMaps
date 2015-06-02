@@ -2,36 +2,68 @@
 % Please edit documentation in R/levelmap.R
 \name{levelmap}
 \alias{levelmap}
-\title{Plots fishery data into maps}
+\title{Plots Fishery Data Into Maps.}
 \usage{
 levelmap(x, data, xlim, ylim, breaks, square = 1, key.space = "right",
-  database = c("world", "worldHires"))
+  database = c("world", "worldHires"), ...)
 }
 \arguments{
-\item{x}{fomula interface}
+\item{x}{A lattice fomula interface, usually \code{z ~ x + y} where
+z is the response variable to be plotted, x are the longitude
+points, and y are the latitude points. It is really important that
+the longitude and latitude points are centered in the middle of the
+squares. See Details. Alternativelly the formula generally is of the
+form \code{z ~ x + y | c1 + c2} where \code{c1} and \code{c2} are
+conditioning variables, i.e. the plots will be generated for each
+combination of \code{c1} and \code{c2} (\code{c1} and \code{c2}
+could be, for example, year and quarter). See more details about
+lattice formula interface at \code{\link[lattice]{levelplot}}.}
 
-\item{data}{data frame}
+\item{data}{A data frame where the variables in the formula
+interface (\code{x}) are contained.}
 
-\item{xlim}{x limits}
+\item{xlim}{The x limits for the map. Usually this will be the
+longitude limits.}
 
-\item{ylim}{y limits}
+\item{ylim}{The y limits for the map. Usually this will be the
+latitude limits.}
 
-\item{breaks}{class breaks}
+\item{breaks}{A numeric vector of cut points, where the data in
+\code{z} should be cutted to form the classes.}
 
-\item{square}{size of square}
+\item{square}{Size of the square. It must be a length one numeric
+vector (e.g. for squares of 1x1 degrees, this should be 1). Roughly
+speaking this can be viewed as the resolution of the map.}
 
-\item{key.space}{place for the legend}
+\item{key.space}{The location or the colorkey (legend) of the
+map. Can be one of \code{"left"}, \code{"right"}, \code{"top"} and
+\code{"bottom"}. Defaults to \code{"right"}.}
 
-\item{database}{world or worldHires}
+\item{database}{The maps database to be used to plot the
+coastlines. Can be one of \code{"world"} (lower resolution) or
+\code{"worldHires"} (higher resolution). Defaults to
+\code{"world"}.}
+
+\item{...}{Other arguments passed to
+\code{\link[lattice]{levelplot}}.}
 }
 \value{
-A map with data
+A figure with the map(s) and the data plotted in levels.
 }
 \description{
-Plots georeferenced fishery data into maps. This
-desciption must be expanded.
+Plots georeferenced fishery data (e.g. catch, effort
+and CPUE) into maps. This function uses the lattice::levelplot to
+draw a _level_plot _map_ based on latitude and longitude, with a
+resolution defined by the size of lat/long squares (e.g. 1x1 or 5x5
+degrees). Coastlines are drawn to display the map, based on two
+databases: maps::world (lower resolution) and mapdata::worldHires
+(higher resolution), although none of these packages are required
+since the databases are buit-in FishMaps.
 }
 \author{
-Fernando Mayer
+Fernando Mayer \email{fernandomayer@gmail.com}
+}
+\seealso{
+\code{\link[lattice]{levelplot}}, \code{\link[lattice]{xyplot}}
 }
 

@@ -1,4 +1,4 @@
-##' @title Creates the ticks for the maps
+##' @title Creates the ticks for the maps.
 ##' @name xyticks
 ##'
 ##' @description Creates the ticks and labels to print in the maps. This
@@ -8,7 +8,7 @@
 ##'
 ##' @return A list with 4 components, to be used in levelmap.
 ##'
-##' @author Fernando Mayer
+##' @author Fernando Mayer \email{fernandomayer@@gmail.com}
 xyticks <- function(xlim, ylim, square){
     labsx <- seq(min(xlim), max(xlim), square)
     labsxc <- as.character(labsx)

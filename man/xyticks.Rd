@@ -7,11 +7,15 @@
 xyticks(xlim, ylim, square)
 }
 \arguments{
-\item{xlim}{x limits}
+\item{xlim}{The x limits for the map. Usually this will be the
+longitude limits.}
 
-\item{ylim}{y limits}
+\item{ylim}{The y limits for the map. Usually this will be the
+latitude limits.}
 
-\item{square}{size of square}
+\item{square}{Size of the square. It must be a length one numeric
+vector (e.g. for squares of 1x1 degrees, this should be 1). Roughly
+speaking this can be viewed as the resolution of the map.}
 }
 \value{
 A list with 4 components, to be used in levelmap.

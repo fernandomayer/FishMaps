@@ -15,260 +15,37 @@ devtools::check()
 ## testando a funcao levelmap
 args(levelmap)
 
+##----------------------------------------------------------------------
+## Bait Boat
+##----------------------------------------------------------------------
+
 ## BB YEAR
 levelmap(cpue ~ lon + lat | year, data = BB.data.y,
          xlim = c(-60, -40), ylim = c(-35, -20),
          key.space = "right", database = "world",
          breaks = pretty(BB.data.y$cpue), square = 1)
 
-database = world
-xlim = c(-60, -40); ylim = c(-35, -20)
-key.space = "right"
-breaks = pretty(BB.data.y$cpue); square = 1
-labs <- xyticks(xlim = xlim, ylim = ylim, square = square)
-labsx <- labs$labsx; labsxc <- labs$labsxc
-labsy <- labs$labsy; labsyc <- labs$labsyc
-
-lev <- levelplot(x, data = BB.data.y, map.db = database, aspect = "iso",
-                 as.table = TRUE, xlim = xlim, ylim = ylim,
-                 xlab = "Longitude", ylab = "Latitude",
-                 scales = list(
-                     x = list(at = labsx, labels = labsxc),
-                     y = list(at = labsy, labels = labsyc)),
-                 strip = strip.custom(bg = "lightgrey"),
-                 at = breaks, colorkey = list(space = key.space),
-                 col.regions = grey.colors(length(breaks) - 1,
-                     start = 0.7, end = 0.1),
-                 par.settings = list(layout.heights = list(top.padding = 0,
-                                         bottom.padding = 0)),
-                 subscripts = TRUE,
-                 panel = panel.fishmaps)
-lev
-
-
-## BB YEAR with 0
+## BB YEAR with ZERO
 str(BB.data.y)
-test1 <- BB.data.y
-idx <- sample(nrow(test1), 8)
-test1$cpue[idx] <- 0
-levelmap(cpue ~ lon + lat | year, data = test1,
+set.seed(1982)
+idx <- sample(nrow(BB.data.y), size = 8)
+bait.boat.y0 <- BB.data.y
+bait.boat.y0$cpue[idx] <- 0
+levelmap(cpue ~ lon + lat | year, data = bait.boat.y0,
          xlim = c(-60, -40), ylim = c(-35, -20),
          key.space = "right", database = "world",
-         breaks = pretty(test1$cpue), square = 1)
+         breaks = pretty(bait.boat.y0$cpue), square = 1)
 
-levelmap(cpue ~ lon + lat | year, data = BB.data.y,
+## BB YEAR with ZERO and NA
+bait.boat.y0na <- bait.boat.y0
+## -25.5/-45.5 (2001)
+bait.boat.y0na$cpue[9] <- NA
+## -23.5/-41.5 (2002)
+bait.boat.y0na$cpue[28] <- NA
+levelmap(cpue ~ lon + lat | year, data = bait.boat.y0na,
          xlim = c(-60, -40), ylim = c(-35, -20),
          key.space = "right", database = "world",
-         breaks = pretty(BB.data.y$cpue), square = 1)
-
-## set X and Y ticks and labels
-database = world
-xlim = c(-60, -40); ylim = c(-35, -20)
-key.space = "right"
-breaks = pretty(test1$cpue); square = 1
-labs <- xyticks(xlim = xlim, ylim = ylim, square = square)
-labsx <- labs$labsx; labsxc <- labs$labsxc
-labsy <- labs$labsy; labsyc <- labs$labsyc
-## get formula
-x <- cpue ~ lon + lat | year
-class(x)
-resp <- all.vars(x)[1]
-resp.vec <- test1[, resp]
-
-lev <- levelplot(x, data = test1, map.db = database, aspect = "iso",
-                 as.table = TRUE, xlim = xlim, ylim = ylim,
-                 xlab = "Longitude", ylab = "Latitude",
-                 scales = list(
-                     x = list(at = labsx, labels = labsxc),
-                     y = list(at = labsy, labels = labsyc)),
-                 strip = strip.custom(bg = "lightgrey"),
-                 at = breaks, colorkey = list(space = key.space),
-                 col.regions = grey.colors(length(breaks) - 1,
-                     start = 0.7, end = 0.1),
-                 par.settings = list(layout.heights = list(top.padding = 0,
-                                         bottom.padding = 0)),
-                 subscripts = TRUE,
-                 #cpue = test1$cpue,
-                 panel = function(x, y, z, map.db, subscripts, ...){
-                     x <- as.numeric(x)[subscripts]
-                     y <- as.numeric(y)[subscripts]
-                     z <- as.numeric(z)[subscripts]
-                     iszero <- (z == 0)#[subscripts]
-                     print(iszero)
-                     print(subscripts)
-                     ## print(y[!iszero])
-                     ## print(z[!iszero])
-                     tmp.xn <- x[!iszero]
-                     tmp.yn <- y[!iszero]
-                     tmp.zn <- z[!iszero]
-                     panel.levelplot(tmp.xn, tmp.yn,
-                                     tmp.zn,
-                                     subscripts = T, ...)
-                     tmp.xz <- x[iszero]
-                     #tmp.xz <- tmp.xz[subscripts]
-                     tmp.yz <- y[iszero]
-                     #tmp.yz <- tmp.yz[subscripts]
-                     print(tmp.xz)
-                     print(tmp.yz)
-                     tmp.zz <- z[iszero]
-                     print(tmp.zz)
-                     panel.points(tmp.xz, tmp.yz, pch = 4)
-                     panel.grid(h = -length(labsx), v = -length(labsy), ...)
-                     panel.polygon(map.db$lon, map.db$lat,
-                                   border = "black", col = "snow", ...)
-                                        #panel.zero.points(x, y, z, ...)
-                 })
-lev
-
-lev <- levelplot(x, data = test1, map.db = database, aspect = "iso",
-                 as.table = TRUE, xlim = xlim, ylim = ylim,
-                 xlab = "Longitude", ylab = "Latitude",
-                 scales = list(
-                     x = list(at = labsx, labels = labsxc),
-                     y = list(at = labsy, labels = labsyc)),
-                 strip = strip.custom(bg = "lightgrey"),
-                 at = breaks, colorkey = list(space = key.space),
-                 col.regions = grey.colors(length(breaks) - 1,
-                     start = 0.7, end = 0.1),
-                 par.settings = list(layout.heights = list(top.padding = 0,
-                                         bottom.padding = 0)),
-                 subscripts = TRUE,
-                 panel = panel.fishmaps)
-lev
-
-
-## get formula
-terms.form <- all.vars(x)
-resp <- terms.form[1]
-lon <- terms.form[2]
-lat <- terms.form[3]
-pipe <- terms.form[4:length(terms.form)]
-pipe <- ifelse(length(pipe) == 1,
-               pipe,
-               paste(pipe, collapse = " + "))
-
-## uma forma mais eficiente com latticeParseFormula
-form <- latticeParseFormula(x, data = test1, dimension = 3,
-                            subset = test1$cpue == 0)
-
-
-xy.form <- as.formula(paste("lat ~ lon", pipe, sep = " | "))
-lev + as.layer(xyplot(xy.form, data = da.zero, pch = 4, col =1))
-
-x <- cpue ~ lon + lat
-class(x)
-terms(x)
-attr(x, "factors")
-attr(x, "response")
-z <- all.vars(x)[1]
-BB.data.y[, z]
-print(x)
-print(z)
-
-data <- test1
-
-fun <- function(x, data){
-    form <- all.vars(x)[1]
-    z <- data[, form]
-    if(any(z == 0L)){
-        data <- subset(data, get(form) == 0)
-        m0 <- lm(x, data)
-    } else{
-        m0 <- lm(x, data)
-    }
-    return(coef(m0))
-}
-
-y <- fun(cpue ~ lon + lat, data = BB.data.y)
-y
-
-a <- fun(cpue ~ lon + lat, data = test1)
-a
-
-## BB YEAR with 0
-str(BB.data.y)
-test1 <- BB.data.y
-idx <- sample(nrow(test1), 8)
-test1$cpue[idx] <- 0
-levelmap(cpue ~ lon + lat | year, data = test1,
-         xlim = c(-60, -40), ylim = c(-35, -20),
-         key.space = "right", database = "world",
-         breaks = pretty(test1$cpue), square = 1)
-
-## set X and Y ticks and labels
-database = world
-xlim = c(-60, -40); ylim = c(-35, -20)
-key.space = "right"
-breaks = pretty(test1$cpue); square = 1
-labs <- xyticks(xlim = xlim, ylim = ylim, square = square)
-labsx <- labs$labsx; labsxc <- labs$labsxc
-labsy <- labs$labsy; labsyc <- labs$labsyc
-## get formula
-x <- cpue ~ lon + lat | year
-class(x)
-resp <- all.vars(x)[1]
-resp.vec <- test1[, resp]
-if(any(resp.vec == 0)){
-    da.zero <- subset(test1, get(resp) == 0)
-    da.nzero <- subset(test1, get(resp) != 0)
-} else{
-    da <- test1
-}
-
-lev <- levelplot(x, data = da.nzero, map.db = database, aspect = "iso",
-                 as.table = TRUE, xlim = xlim, ylim = ylim,
-                 xlab = "Longitude", ylab = "Latitude",
-                 scales = list(
-                     x = list(at = labsx, labels = labsxc),
-                     y = list(at = labsy, labels = labsyc)),
-                 strip = strip.custom(bg = "lightgrey"),
-                 at = breaks, colorkey = list(space = key.space),
-                 col.regions = grey.colors(length(breaks) - 1,
-                     start = 0.7, end = 0.1),
-                 par.settings = list(layout.heights = list(top.padding = 0,
-                                         bottom.padding = 0)),
-                 #subscripts = TRUE,
-                 panel = function(x, y, z, map.db, ...){
-                     panel.levelplot(x, y, z, ...)
-                     panel.grid(h = -length(labsx), v = -length(labsy), ...)
-                     panel.polygon(map.db$lon, map.db$lat,
-                                   border = "black", col = "snow", ...)
-                                        #panel.zero.points(x, y, z, ...)
-                 })
-lev
-
-## get formula
-terms.form <- all.vars(x)
-resp <- terms.form[1]
-lon <- terms.form[2]
-lat <- terms.form[3]
-pipe <- terms.form[4:length(terms.form)]
-pipe <- ifelse(length(pipe) == 1,
-               pipe,
-               paste(pipe, collapse = " + "))
-
-## uma forma mais eficiente com latticeParseFormula
-form <- latticeParseFormula(x, data = test1, dimension = 3,
-                            subset = test1$cpue == 0)
-
-
-xy.form <- as.formula(paste("lat ~ lon", pipe, sep = " | "))
-lev + as.layer(xyplot(xy.form, data = da.zero, pch = 4, col =1))
-
-lev + as.layer(xyplot(lat ~ lon | year, data = da.zero, pch = 4, col =1))
-lev + layer(panel.points(x = lon, y = lat, pch = 4, col = "black"),
-            data = da.zero)
-
-
-## BB YEAR with 0 and NA
-test2 <- test1
-idx <- sample(nrow(test2), 5)
-test2$cpue[idx] <- NA
-levelmap(cpue ~ lon + lat | year, data = test2,
-         xlim = c(-60, -40), ylim = c(-35, -20),
-         key.space = "right", database = "world",
-         breaks = pretty(test2$cpue), square = 1)
-
+         breaks = pretty(bait.boat.y0na$cpue), square = 1)
 
 ## BB YEAR-QUARTER
 levelmap(cpue ~ lon + lat | year + quarter, data = BB.data.yq,
@@ -276,485 +53,93 @@ levelmap(cpue ~ lon + lat | year + quarter, data = BB.data.yq,
          key.space = "right", database = "world",
          breaks = pretty(BB.data.yq$cpue), square = 1)
 
-database = world
-xlim = c(-60, -40); ylim = c(-35, -20)
-key.space = "right"
-breaks = pretty(BB.data.yq$cpue); square = 1
-labs <- xyticks(xlim = xlim, ylim = ylim, square = square)
-labsx <- labs$labsx; labsxc <- labs$labsxc
-labsy <- labs$labsy; labsyc <- labs$labsyc
-x <- cpue ~ lon + lat | year * quarter
-
-lev <- levelplot(x, data = BB.data.yq, map.db = database, aspect = "iso",
-                 as.table = TRUE, xlim = xlim, ylim = ylim,
-                 xlab = "Longitude", ylab = "Latitude",
-                 scales = list(
-                     x = list(at = labsx, labels = labsxc),
-                     y = list(at = labsy, labels = labsyc)),
-                 strip = strip.custom(bg = "lightgrey"),
-                 at = breaks, colorkey = list(space = key.space),
-                 col.regions = grey.colors(length(breaks) - 1,
-                     start = 0.7, end = 0.1),
-                 par.settings = list(layout.heights = list(top.padding = 0,
-                                         bottom.padding = 0)),
-                 subscripts = TRUE,
-                 panel = panel.fishmaps)
-lev
-
-
+## BB YEAR-QUARTER with ZERO
 str(BB.data.yq)
-test2 <- BB.data.yq
-idx <- sample(nrow(test2), 15)
-test2$cpue[idx] <- 0
-levelmap(cpue ~ lon + lat | year + quarter, data = test2,
+set.seed(1982)
+idx <- sample(nrow(BB.data.yq), size = 18)
+bait.boat.yq0 <- BB.data.yq
+bait.boat.yq0$cpue[idx] <- 0
+levelmap(cpue ~ lon + lat | year + quarter, data = bait.boat.yq0,
          xlim = c(-60, -40), ylim = c(-35, -20),
          key.space = "right", database = "world",
-         breaks = pretty(test2$cpue), square = 1)
+         breaks = pretty(bait.boat.yq0$cpue), square = 1)
 
-database = world
-xlim = c(-60, -40); ylim = c(-35, -20)
-key.space = "right"
-breaks = pretty(test2$cpue); square = 1
-labs <- xyticks(xlim = xlim, ylim = ylim, square = square)
-labsx <- labs$labsx; labsxc <- labs$labsxc
-labsy <- labs$labsy; labsyc <- labs$labsyc
-x <- cpue ~ lon + lat | year * quarter
-
-col.regions <- grey.colors(length(breaks) - 1, start = 0.7, end = 0.1)
-
-lev <- levelplot(x, data = test2, map.db = database, aspect = "iso",
-                 as.table = TRUE, xlim = xlim, ylim = ylim,
-                 xlab = "Longitude", ylab = "Latitude",
-                 scales = list(
-                     x = list(at = labsx, labels = labsxc),
-                     y = list(at = labsy, labels = labsyc)),
-                 strip = strip.custom(bg = "lightgrey"),
-                 at = breaks, colorkey = list(space = key.space),
-                 col.regions = col.regions,
-                 par.settings = list(layout.heights = list(top.padding = 0,
-                                         bottom.padding = 0)),
-                 subscripts = TRUE,
-                 panel = panel.fishmaps)
-lev
-
-xyplot(lat ~ lon | year * quarter, data = test2, aspect="iso",
-       col = col.regions, colorkey = list(space = key.space),
-       panel = panel.rect, height = 1, width = 1)
-
-u = runif(10) * 10
-v = runif(10) * 10
-z = runif(10)
-levelplot ( z ~ u + v, aspect="iso" )
-xyplot(v ~ u, aspect="iso",
-       col = level.colors(z, at = pretty(z,15)),
-       panel = panel.rect, height = 1, width = 1)
-
-
-## set X and Y ticks and labels
-database = world
-xlim = c(-60, -40); ylim = c(-35, -20)
-key.space = "right"
-breaks = pretty(test2$cpue); square = 1
-labs <- xyticks(xlim = xlim, ylim = ylim, square = square)
-labsx <- labs$labsx; labsxc <- labs$labsxc
-labsy <- labs$labsy; labsyc <- labs$labsyc
-## get formula
-x <- cpue ~ lon + lat | year*quarter
-class(x)
-all.vars(x)
-resp <- all.vars(x)[1]
-resp.vec <- test2[, resp]
-if(any(resp.vec == 0)){
-    da.zero <- subset(test2, get(resp) == 0)
-    da.nzero <- subset(test2, get(resp) != 0)
-} else{
-    da <- test2
-}
-
-lev <- levelplot(x, data = da.nzero, map.db = database, aspect = "iso",
-                 as.table = TRUE, xlim = xlim, ylim = ylim,
-                 xlab = "Longitude", ylab = "Latitude",
-                 scales = list(
-                     x = list(at = labsx, labels = labsxc),
-                     y = list(at = labsy, labels = labsyc)),
-                 strip = strip.custom(bg = "lightgrey"),
-                 at = breaks, colorkey = list(space = key.space),
-                 col.regions = grey.colors(length(breaks) - 1,
-                     start = 0.7, end = 0.1),
-                 par.settings = list(layout.heights = list(top.padding = 0,
-                                         bottom.padding = 0)),
-                 #subscripts = TRUE,
-                 panel = function(x, y, z, map.db, ...){
-                     panel.levelplot(x, y, z, ...)
-                     panel.grid(h = -length(labsx), v = -length(labsy), ...)
-                     panel.polygon(map.db$lon, map.db$lat,
-                                   border = "black", col = "snow", ...)
-                                        #panel.zero.points(x, y, z, ...)
-                 })
-lev
-
-terms.form <- all.vars(x)
-resp <- terms.form[1]
-lon <- terms.form[2]
-lat <- terms.form[3]
-pipe <- terms.form[4:length(terms.form)]
-pipe <- ifelse(length(pipe) == 1,
-               pipe,
-               paste(pipe, collapse = " + "))
-
-xy.form <- as.formula(paste("lat ~ lon", pipe, sep = " | "))
-lev + as.layer(xyplot(xy.form, data = da.zero, pch = 4, col =1))
-
-lev + as.layer(xyplot(lat ~ lon | year, data = da.zero, pch = 4, col =1))
-lev + layer(panel.points(x = lon, y = lat, pch = 4, col = "black"),
-            data = da.zero)
-
-
-## Carrega a funcao
-source("levelmap.R")
-## Teste sem 0 e NAs
-levelmap(x ~ Lon3 + Lat3 | factor(Quarter), data = dados, xlim = c(-60, 20),
-         ylim = c(-50, 5), breaks = pretty(dados$x),
-         jump = 5, bathymetry = TRUE,
-         bathymetry.seq = seq(-1000, -8000, -1000))
-
-## Insere 0
-set.seed(123)
-samp.0 <- sample(1:nrow(dados), size = 5)
-dados$x[samp.0] <- 0
-## Teste COM 0
-levelmap(x ~ Lon3 + Lat3 | factor(Quarter), data = dados, xlim = c(-60, 20),
-         ylim = c(-50, 5), breaks = pretty(dados$x),
-         jump = 5, bathymetry = TRUE,
-         bathymetry.seq = seq(-1000, -8000, -1000))
-
-## Insere NAs
-set.seed(321)
-samp.NA <- sample(1:nrow(dados), size = 5)
-dados$x[samp.NA] <- NA
-## Teste COM 0 E NAs
-levelmap(x ~ Lon3 + Lat3 | factor(Quarter), data = dados, xlim = c(-60, 20),
-         ylim = c(-50, 5), breaks = pretty(dados$x),
-         jump = 5, bathymetry = TRUE,
-         bathymetry.seq = seq(-1000, -8000, -1000))
-
-stop
-##----------------------------------------------------------------------
-## Datasets for examples
+## BB YEAR-QUARTER with ZERO and NA
+bait.boat.yq0na <- bait.boat.yq0
+## -32.5/-50.5 (2001/2)
+bait.boat.yq0na$cpue[34] <- NA
+## -23.5/-41.5 (2002/1)
+bait.boat.yq0na$cpue[61] <- NA
+levelmap(cpue ~ lon + lat | year + quarter, data = bait.boat.yq0na,
+         xlim = c(-60, -40), ylim = c(-35, -20),
+         key.space = "right", database = "world",
+         breaks = pretty(bait.boat.yq0na$cpue), square = 1)
 ##----------------------------------------------------------------------
 
-# tamanho amostral por ano e trimestre
-mapa.latt <- read.csv("../data/mapa.latt.csv")
-# tamanho amostral por trimestre
-mapa.latt.q <- read.csv("../data/mapa.latt.q.csv")
-# captura whm por trimestre
-mapa.whm <- read.csv("../data/mapa.whm.csv")
-# captura bum por trimestre
-mapa.bum <- read.csv("../data/mapa.bum.csv")
-# captura conjunta (whm e bum) por trimestre
-mapa.conj <- read.csv("../data/mapa.conj.csv")
-
-
 ##----------------------------------------------------------------------
-## Essa parte contem todas as definicoes comuns para todos os tipos de
-## mapas que serao feitos
+## Long Line
 ##----------------------------------------------------------------------
 
-# pacotes gráficos
-require(lattice)
-require(latticeExtra)
+## LL YEAR
+levelmap(cpue ~ lon + lat | year, data = LL.data.y,
+         xlim = c(-60, -20), ylim = c(-50, -10),
+         key.space = "right", database = "world",
+         breaks = pretty(LL.data.y$cpue), square = 5)
+
+## LL YEAR with ZERO
+str(LL.data.y)
+set.seed(1982)
+idx <- sample(nrow(LL.data.y), size = 8)
+long.line.y0 <- LL.data.y
+long.line.y0$cpue[idx] <- 0
+levelmap(cpue ~ lon + lat | year, data = long.line.y0,
+         xlim = c(-60, -20), ylim = c(-50, -10),
+         key.space = "right", database = "world",
+         breaks = pretty(long.line.y0$cpue), square = 5)
+
+## LL YEAR with ZERO and NA
+long.line.y0na <- long.line.y0
+## -27.5/-37.5 (2002)
+long.line.y0na$cpue[26] <- NA
+## -37.5/-32.5 (2005)
+long.line.y0na$cpue[72] <- NA
+levelmap(cpue ~ lon + lat | year, data = long.line.y0na,
+         xlim = c(-60, -20), ylim = c(-50, -10),
+         key.space = "right", database = "world",
+         breaks = pretty(long.line.y0na$cpue), square = 5)
+
+## LL YEAR-QUARTER
+levelmap(cpue ~ lon + lat | year + quarter, data = LL.data.yq,
+         xlim = c(-60, -20), ylim = c(-50, -10),
+         key.space = "right", database = "world",
+         breaks = pretty(LL.data.yq$cpue), square = 5)
+
+## LL YEAR-QUARTER with ZERO
+str(LL.data.yq)
+set.seed(1982)
+idx <- sample(nrow(LL.data.yq), size = 18)
+long.line.yq0 <- LL.data.yq
+long.line.yq0$cpue[idx] <- 0 # alguns ficaram escondidos
+levelmap(cpue ~ lon + lat | year + quarter, data = long.line.yq0,
+         xlim = c(-60, -20), ylim = c(-50, -10),
+         key.space = "right", database = "world",
+         breaks = pretty(long.line.yq0$cpue), square = 5)
+
+## LL YEAR-QUARTER with ZERO and NA
+long.line.yq0na <- long.line.yq0
+## -32.5/-47.5 (2002/3)
+long.line.yq0na$cpue[64] <- NA
+## -32.5/-32.5 (2005/1)
+long.line.yq0na$cpue[154] <- NA
+levelmap(cpue ~ lon + lat | year + quarter, data = long.line.yq0na,
+         xlim = c(-60, -20), ylim = c(-50, -10),
+         key.space = "right", database = "world",
+         breaks = pretty(long.line.yq0na$cpue), square = 5)
+##----------------------------------------------------------------------
+
+
 
 # base de dados para o mapa
 library(mapdata)
 mm <- map("world", plot = FALSE, fill = TRUE)
 
-# base de dados de batimetria dos oceanos
-require(marelac)
-data(Bathymetry)
-
-# define os ranges do mapa, e os labels para colocar nos graficos
-# aqui estao soh as defincoes para os maps do atlantico sul ,baseado no
-# range desses dados. Precisamos tornar isso generico
-xlim <- c(-60, 20)
-labsx <- seq(-60,20,5)
-labsxc <- as.character(labsx)
-labsxc[seq(2, length(labsxc), 2)] <- ""
-ylim <- c(-50, 5)
-labsy <- seq(-50,5,5)
-labsyc <- as.character(labsy)
-labsyc[seq(2, length(labsyc), 2)] <- ""
-
-# Funcao para adicionar os pontos onde a captura eh zero. Tive que fazer
-# a condicao para separar os pontos com zero dos demais, e a unica forma
-# que achei foi plotando os positivos com um ponto invisivel. Note que
-# se houver um valor nulo e um positivo no mesmo quadrado, o ponto vai
-# ser adicionado junto com a cor do levelplot, pois nao consigui fazer
-# ele distinguir se naquele ponto houve algum outro valor que foi
-# positivo. Isso implica em que geralmente sera necessario fazer um
-# aggregate antes de plotar os dados para que nao haja esse tipo de
-# sobreposicao. (Essa funcao foi baseada na panel.corrgram.2() da Figura
-# 13.5 do livro do Lattice - o codigo esta no site).
-panel.zero.points <- function(x, y, z, subscripts, ...){
-    require("grid", quietly = TRUE)
-    x <- as.numeric(x)[subscripts]
-    y <- as.numeric(y)[subscripts]
-    z <- as.numeric(z)[subscripts]
-    for(i in seq(along = z)){
-        if(z[i] == 0L){
-            grid.points(x = x[i], y = y[i], pch = 3,
-                        size = unit(1, "native"))
-        } else{
-            grid.points(x = x[i], y = y[i], pch = "")
-        }
-    }
-}
-
-# Funcao adaptada da funcao panel.zero.points desenvolvida por Fernando
-# Mayer, que destina uma simbologia especifica para os casos de dados
-# não disponíveis (NA's)
-panel.na.points <- function(x, y, z, subscripts, ...){
-    require("grid", quietly = TRUE)
-    x <- as.numeric(x)[subscripts]
-    y <- as.numeric(y)[subscripts]
-    z <- as.numeric(z)[subscripts]
-    for(i in seq(along = z)){
-        if(is.na(z[i])) {
-            grid.points(x = x[i], y = y[i], pch = "-")
-        } else if(z[i] == 0L) {
-            grid.points(x = x[i], y = y[i], pch = "+")
-        } else {
-            grid.points(x = x[i], y = y[i], pch = "")
-        }
-    }
-}
-
-# Funcao para determinar os labels das isobatas de profundidade que
-# serao plotadas no mapa
-isobath <- function(x, ...){
-    temp <- expand.grid(x$x, x$y)
-    temp2 <- data.frame(matrix(unlist(x$z)))
-    add <- data.frame(x = temp[,1], y = temp[,2], z = temp2[,1])
-    return(add)
-}
-
-add <- isobath(Bathymetry)
-
-##----------------------------------------------------------------------
-
-
-## Usando a base mapa.latt - aqui varias paginas de graficos sao geradas
-##----------------------------------------------------------------------
-
-# define as quebras de classe para serem usadas para calcular os niveis
-# (argumento at)
-lev <- do.breaks(range(mapa.latt$x), 2)
-# adiciona mais uma classe para englobar os valores iguais ao min, caso
-# contrario ele fica de fora
-lev <- c(0, lev)
-# cria um label
-levc <- as.character(lev)
-levc[1] <- ""
-
-## # final do arquivo com p para portrait
-## pdf("mapa_Namostral_p.pdf", width = 8, height = 10)
-## # final do arquivo com l para landscape
-## pdf("mapa_Namostral_l.pdf", width = 12, height = 10,
-##     onefile = TRUE, paper = "a4r")
-
-# define a quebra dos anos
-anos <- round(do.breaks(range(mapa.latt$YearC), 13))
-
-# print eh necessario quando uma funcao do lattice eh usada dentro do
-# for()
-for(i in 2:length(anos)){
-print(levelplot(x ~ Lon3 + Lat3 | factor(YearC) + factor(Quarter),
-          data = mapa.latt, mm = mm, aspect = "iso",
-          subset = YearC %in% (anos[i-1]:anos[i]),
-          as.table = TRUE, xlim = xlim, ylim = ylim,
-          xlab = expression(paste("Longitude ", "(", degree, ")")),
-          ylab = expression(paste("Latitude ", "(", degree, ")")),
-          between = list(x = c(1,1), y = c(1,1)), pretty = TRUE,
-          scales = list(x = list(at = labsx, labels = labsxc),
-          y = list(at = labsy, labels = labsyc)),
-          strip = strip.custom(bg = "lightgrey"),
-          at = lev, col.regions = rev(grey.colors(length(lev)-1)),
-          #col.regions = rev(do.call(grey, list(seq(.1,.9,.3)))),
-          colorkey=list(space="right",labels=list(at=lev,labels=levc)),
-          panel = function(x, mm, ...){
-              panel.levelplot(x, ...)
-              panel.grid(h = -length(labsx), v = -length(labsy), ...)
-              panel.lines(mm$x, mm$y, col = "black")
-          }))
-}
-# dev.off()
-
-##----------------------------------------------------------------------
-
-
-## Usando mapa.latt.q - apenas por trimestre, soh uma pagina de graficos
-##----------------------------------------------------------------------
-
-# quebras
-lev <- round(do.breaks(range(mapa.latt.q$x), 13))
-levc <- as.character(lev)
-levc[1] <- ""
-
-# levelplot
-## pdf("mapa_tam_amostral_quarter.pdf", w=12, h=10)
-p <- levelplot(x ~ Lon3 + Lat3, data = mapa.latt.q,
-               mm = mm, aspect = "iso",
-               as.table = TRUE, xlim = xlim, ylim = ylim,
-               xlab = expression(paste("Longitude ", "(", degree, ")")),
-               ylab = expression(paste("Latitude ", "(", degree, ")")),
-               between = list(x = c(1,1), y = c(1,1)), pretty = TRUE,
-               scales = list(x = list(at = labsx, labels = labsxc),
-                   y = list(at = labsy, labels = labsyc)),
-               strip = strip.custom(bg = "lightgrey"),
-               at = lev, col.regions = rev(grey.colors(length(lev)-1)),
-               colorkey = list(space="right", labels=list(at=lev, labels=levc)),
-               panel = function(x, mm, prof, temp, ...){
-                   panel.levelplot(x, ...)
-                   panel.grid(h = -length(labsx), v = -length(labsy), ...)
-                   panel.polygon(mm$x, mm$y, border = "black", col = "snow")
-          })
-
-p + layer(panel.contourplot(x = temp$x, y = temp$y, z = temp$z,
-                            at = seq(0, -8000, -500),
-                            col = "gray10", lty = "dashed",
-                            contour = TRUE, subscripts = TRUE,
-                            xlim = xlim, ylim = ylim, region =
-                            FALSE, labels = list(labels = TRUE, col =
-                            "gray10", cex = 0.5), label.style =
-                            "flat"), data = temp)
-
-# dev.off()
-
-##---------------------------------------------------------------------
-
-
-## Mapa de WHM
-##----------------------------------------------------------------------
-
-# define as quebras de classe para serem usadas para calcular os niveis
-# (argumento at)
-lev <- pretty(mapa.whm$x[mapa.whm$x > 0], 40)
-lev[1] <- 1
-
-# levelplot - NOTE que pelo fato dos niveis (lev) terem sido criados sem
-# a inclusao do zero, o que faz com que os valores calculados e plotados
-# pelo levelplot nao incluam o zero. A funcao panel.zero.points()
-# (definida acima), serve para incluir os pontos onde existem dados
-# (inclusive os zeros)
-levelplot(x ~ Lon3 + Lat3 | factor(Quarter),
-          data = mapa.whm, add.cl = prof, mm = mm, aspect = "iso",
-          as.table = TRUE, xlim = xlim, ylim = ylim,
-          xlab = expression(paste("Longitude ", "(", degree, ")")),
-          ylab = expression(paste("Latitude ", "(", degree, ")")),
-          between = list(x = c(1,1), y = c(1,1)), pretty = TRUE,
-          scales = list(x = list(at = labsx, labels = labsxc),
-          y = list(at = labsy, labels = labsyc)),
-          strip = strip.custom(bg = "lightgrey"),
-          at = lev, col.regions = rev(grey.colors(length(lev)-1)),
-          colorkey = list(space="right"),
-          panel = function(x, y, z, mm, add.cl, ...){
-              panel.levelplot(x, y, z, ...)
-              panel.grid(h = -length(labsx), v = -length(labsy), ...)
-              lapply(add.cl, panel.lines, border = "blue", lty = "dotted")
-              panel.polygon(mm$x, mm$y, border = "black", col = "snow")
-              #panel.zero.points(x, y, z, ...)
-              panel.na.points(x, y, z, ...)
-          })
-
-## Simulado uma planilha com Zeros e NA's
-teste <- mapa.whm
-
-# levelplot - NOTE que pelo fato dos niveis (lev) terem sido criados sem
-# a inclusao do zero e na's, o que faz com que os valores calculados e
-# plotados pelo levelplot nao incluam o zero, nem na's. A funcao
-# panel.na.points() (definida acima), serve para incluir os pontos onde
-# existem dados, onde não existem e inclusive os zeros
-levelplot(x ~ Lon3 + Lat3 | factor(Quarter),
-          data = teste, add.cl = prof, mm = mm, aspect = "iso",
-          as.table = TRUE, xlim = xlim, ylim = ylim,
-          xlab = expression(paste("Longitude ", "(", degree, ")")),
-          ylab = expression(paste("Latitude ", "(", degree, ")")),
-          between = list(x = c(1,1), y = c(1,1)), pretty = TRUE,
-          scales = list(x = list(at = labsx, labels = labsxc),
-          y = list(at = labsy, labels = labsyc)),
-          strip = strip.custom(bg = "lightgrey"),
-          at = lev, col.regions = rev(grey.colors(length(lev)-1)),
-          colorkey = list(space="right"),
-          panel = function(x, y, z, mm, add.cl, ...){
-              panel.levelplot(x, y, z, ...)
-              panel.grid(h = -length(labsx), v = -length(labsy), ...)
-              lapply(add.cl, panel.lines, border = "blue", lty = "dotted")
-              panel.polygon(mm$x, mm$y, border = "black", col = "snow")
-              #panel.zero.points(x, y, z, ...)
-              panel.na.points(x, y, z, ...)
-          })
-
-
-##----------------------------------------------------------------------
-
-
-## Mapa de BUM
-##----------------------------------------------------------------------
-
-# define as quebras de classe para serem usadas para calcular os niveis
-# (argumento at)
-lev <- pretty(mapa.bum$x[mapa.bum$x > 0], 40)
-lev[1] <- 1
-
-# levelplot
-levelplot(x ~ Lon3 + Lat3 | factor(Quarter),
-          data = mapa.bum, mm = mm, add.cl = prof, aspect = "iso",
-          as.table = TRUE, xlim = xlim, ylim = ylim,
-          xlab = expression(paste("Longitude ", "(", degree, ")")),
-          ylab = expression(paste("Latitude ", "(", degree, ")")),
-          between = list(x = c(1,1), y = c(1,1)), pretty = TRUE,
-          scales = list(x = list(at = labsx, labels = labsxc),
-          y = list(at = labsy, labels = labsyc)),
-          strip = strip.custom(bg = "lightgrey"),
-          at = lev, col.regions = rev(grey.colors(length(lev)-1)),
-          colorkey = list(space="right"),
-          panel = function(x, y, z, mm, add.cl, ...){
-              panel.levelplot(x, y, z, ...)
-              panel.grid(h = -length(labsx), v = -length(labsy), ...)
-              lapply(add.cl, panel.lines, border = "blue", lty = "dotted")
-              panel.polygon(mm$x, mm$y, border = "black", col = "snow")
-              #panel.zero.points(x, y, z, ...)
-              panel.na.points(x, y, z, ...)
-          })
-
-##----------------------------------------------------------------------
-
-
-## Mapa CAPTURA - conjunto
-##----------------------------------------------------------------------
-
-# define os levels conjuntos
-lev <- with(mapa.conj, pretty(c(WHM[WHM>0], BUM[BUM>0]), 40))
-lev[1] <- 1
-
-# levelplot
-# pdf("mapa_captura.pdf", w=12, h=10, paper="a4r")
-levelplot(WHM + BUM ~ Lon3 + Lat3 | factor(Quarter), outer = TRUE,
-          data = mapa.conj, mm = mm, add.cl = prof, aspect = "iso",
-          as.table = TRUE, xlim = xlim, ylim = ylim,
-          xlab = expression(paste("Longitude ", "(", degree, ")")),
-          ylab = expression(paste("Latitude ", "(", degree, ")")),
-          between = list(x = c(1,1), y = c(1,1)), pretty = TRUE,
-          scales = list(x = list(at = labsx, labels = labsxc),
-          y = list(at = labsy, labels = labsyc)),
-          strip = strip.custom(bg = "lightgrey"),
-          at = lev, col.regions = rev(grey.colors(length(lev)-1)),
-          colorkey = list(space="right"),
-          panel = function(x, y, z, mm, add.cl, ...){
-              panel.levelplot(x, y, z, ...)
-              panel.grid(h = -length(labsx), v = -length(labsy), ...)
-              lapply(add.cl, panel.lines, border = "blue", lty = "dotted")
-              panel.polygon(mm$x, mm$y, border = "black", col = "snow")
-              #panel.zero.points(x, y, z, ...)
-              panel.na.points(x, y, z, ...)
-          })
-# dev.off()

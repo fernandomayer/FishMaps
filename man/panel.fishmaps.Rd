@@ -8,36 +8,38 @@ panel.fishmaps(x, y, z, map.db, msq, breaks, col.reg, labsx, labsy, subscripts,
   ...)
 }
 \arguments{
-\item{x}{from lattice fomrmula x}
+\item{x}{From lattice formula x.}
 
-\item{y}{from lattice fomrmula y}
+\item{y}{From lattice formula y.}
 
-\item{z}{from lattice fomrmula z}
+\item{z}{From lattice formula z.}
 
-\item{map.db}{map database}
+\item{map.db}{The map database.}
 
-\item{msq}{middle square}
+\item{msq}{The middle of squares defined in argument \code{square}
+in \code{\link{levelmap}}.}
 
-\item{breaks}{from main function}
+\item{breaks}{The \code{breaks} argument from \code{\link{levelmap}}.}
 
-\item{col.reg}{from main function}
+\item{col.reg}{The color regions, from \code{\link{levelmap}}.}
 
-\item{labsx}{from main function}
+\item{labsx}{The x axis ticks and labels.}
 
-\item{labsy}{from main function}
+\item{labsy}{The y axis ticks and labels.}
 
-\item{subscripts}{lattice subscripts}
+\item{subscripts}{Lattice panel subscripts.}
 
-\item{...}{other arguments passed to other lattice panels}
-}
-\value{
-Nothing
+\item{...}{Other arguments passed to lattice panel functions.}
 }
 \description{
 A lattice panel function to draw rectangles where z is
-different from zero and to draw points where z is exactly zero
+different from zero and to draw points where z is exactly zero.
+}
+\details{
+All arguments used here are defined in the source of the
+\code{\link{levelmap}} function.
 }
 \author{
-Fernando Mayer
+Fernando Mayer \email{fernandomayer@gmail.com}
 }
 

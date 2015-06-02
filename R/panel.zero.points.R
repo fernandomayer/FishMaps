@@ -2,17 +2,15 @@
 ##' @name panel.zero.points
 ##'
 ##' @description A lattice panel function to plot special characters to
-##' maps when data is zero
+##' maps when data is zero.
 ##'
-##' @param x from lattice fomrmula x
-##' @param y from lattice fomrmula y
-##' @param z from lattice fomrmula z
-##' @param subscripts lattice subscripts
-##' @param ... other arguments passed to other lattice panels
+##' @param x From lattice fomrmula x.
+##' @param y From lattice fomrmula y.
+##' @param z From lattice fomrmula z.
+##' @param subscripts Lattice panbel subscripts.
+##' @param ... Other arguments passed to lattice panel functions.
 ##'
-##' @return Nothing.
-##'
-##' @author Fernando Mayer
+##' @author Fernando Mayer \email{fernandomayer@@gmail.com}
 panel.zero.points <- function(x, y, z, subscripts, ...){
     x <- as.numeric(x)[subscripts]
     y <- as.numeric(y)[subscripts]

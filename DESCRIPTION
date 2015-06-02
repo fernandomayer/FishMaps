@@ -2,11 +2,14 @@ Package: FishMaps
 Title: Proportional Symbol Mapping For Fishery Data
 Version: 0.3-0
 Authors@R: person("Fernando", "Mayer", email = "fernandomayer@gmail.com", role = c("aut", "cre"))
-Description: Proportional symbol mapping for fishery data. It uses
-	     pre-defined or user-defined maps.
+Description: Plots georeferenced fishery data into maps. This package
+	     uses the power of lattice's levelplot and maps databases
+	     from the maps and mapdata packages.
 Depends: R (>= 3.2.0)
 Imports:
     lattice
+URL: https://github.com/fernandomayer/FishMaps
+BugReports: https://github.com/fernandomayer/FishMaps/issues
 License: GPL-3
 LazyData: true
 SysDataCompression: xz
