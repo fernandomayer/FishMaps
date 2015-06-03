@@ -29,16 +29,17 @@ georeferenced data can be used.
 ### Linux/Mac
 
 Use the `devtools` package (available from
-[CRAN](http://cran-r.c3sl.ufpr.br/web/packages/devtools/index.html) to
-install automatically from this GitHub repository):
+[CRAN](http://cran-r.c3sl.ufpr.br/web/packages/devtools/index.html)) to
+install automatically from this GitHub repository:
 
 ```r
 library(devtools)
 install_github("fernandomayer/FishMaps")
 ```
 
-Alternatively, download the package tarball and run from a UNIX
-terminal (make sure you are on the container file directory):
+Alternatively, download the package tarball: [FishMaps_0.3-0.tar.gz][]
+and run from a UNIX terminal (make sure you are on the container file
+directory):
 
 ```shell
 R CMD INSTALL -l /path/to/your/R/library FishMaps_0.3-0.tar.gz
@@ -81,5 +82,6 @@ This package is released under the
 [lattice]: http://cran-r.c3sl.ufpr.br/web/packages/lattice/index.html
 [maps]: http://cran-r.c3sl.ufpr.br/web/packages/maps/index.html
 [mapdata]: http://cran-r.c3sl.ufpr.br/web/packages/mapdata/index.html
+[FishMaps_0.3-0.tar.gz]: https://github.com/fernandomayer/FishMaps/blob/master/downloads/FishMaps_0.3-0.tar.gz?raw=true
 [FishMaps_0.3-0.zip]: https://github.com/fernandomayer/FishMaps/blob/master/downloads/FishMaps_0.3-0.zip?raw=true 
 [FishMaps.pdf]: https://github.com/fernandomayer/FishMaps/raw/master/downloads/FishMaps-manual.pdf
