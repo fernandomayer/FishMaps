@@ -7,7 +7,7 @@ Plots Fishery Data into Maps
 ## Introduction
 
 FishMaps was designed to plot georeferenced fishery data (e.g. catch,
-effort and CPUE) into maps. This function uses the [lattice][] levelplot
+effort and CPUE) into maps. This package uses the [lattice][] levelplot
 to draw a _level_plot _map_ based on latitude and longitude, with a
 resolution defined by the size of lat/long squares (e.g. 1x1 or 5x5
 degrees). Coastlines are drawn to display the map, based on two
@@ -30,31 +30,56 @@ georeferenced data can be used.
 
 Use the `devtools` package (available from
 [CRAN](http://cran-r.c3sl.ufpr.br/web/packages/devtools/index.html) to
-install automatically from this GitHub repository
+install automatically from this GitHub repository):
 
 ```r
 library(devtools)
 install_github("fernandomayer/FishMaps")
 ```
 
+Alternatively, download the package tarball and run from a UNIX
+terminal (make sure you are on the container file directory):
+
+```shell
+R CMD INSTALL -l /path/to/your/R/library FishMaps_0.3-0.tar.gz
+```
+
+Or, inside an `R` session:
+
+```r
+install.packages("FishMaps_0.3-0.tar.gz", repos = NULL,
+                 lib.loc = "/path/to/your/R/library"
+                 dependencies = TRUE)
+```
+
+Note that `-l /path/to/your/R/library` in the former and `lib.loc =
+"/path/to/your/R/library"` in the latter are optional. Only use it if you
+want to install in a personal library, other than the standard R
+library. 
+
 ### Windows
 
-Download Windows binary version:
-[FishMaps_0.3-0.zip](https://github.com/fernandomayer/FishMaps/blob/master/downloads/FishMaps_0.3-0.zip?raw=true)
+Download Windows binary version: [FishMaps_0.3-0.zip][] (**do not unzip
+it under Windows**), put the file in your working directory, and from
+inside `R`:
 
-> NOTE: do not unzip it under Windows.
+```r
+install.packages("FishMaps_0.3-0.zip", repos = NULL,
+                 dependencies = TRUE)
+```
 
 ## Documentation
 
-The reference manual in PDF can be found here:
-[FishMaps.pdf](https://github.com/fernandomayer/FishMaps/raw/master/downloads/FishMaps-manual.pdf)
+The reference manual in PDF can be found here: [FishMaps.pdf][]
 
 ## License
 
 This package is released under the
-[GNU General Public License (GPL) v. 3.0]
-(http://www.gnu.org/licenses/gpl-3.0.html)
+[GNU General Public License (GPL) v. 3.0](http://www.gnu.org/licenses/gpl-3.0.html)
+
 
 [lattice]: http://cran-r.c3sl.ufpr.br/web/packages/lattice/index.html
 [maps]: http://cran-r.c3sl.ufpr.br/web/packages/maps/index.html
 [mapdata]: http://cran-r.c3sl.ufpr.br/web/packages/mapdata/index.html
+[FishMaps_0.3-0.zip]: https://github.com/fernandomayer/FishMaps/blob/master/downloads/FishMaps_0.3-0.zip?raw=true 
+[FishMaps.pdf]: https://github.com/fernandomayer/FishMaps/raw/master/downloads/FishMaps-manual.pdf
