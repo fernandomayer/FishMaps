@@ -1,15 +1,17 @@
 Package: FishMaps
 Title: Plots Fishery Data into Maps
-Version: 0.3-0
+Version: 0.3-1
 Authors@R: person("Fernando", "Mayer", email = "fernandomayer@gmail.com", role = c("aut", "cre"))
 Description: Plots georeferenced fishery data into maps. This package
-	     uses the power of lattice's levelplot and maps databases
-	     from the maps and mapdata packages.
-Depends: R (>= 3.2.0)
+    uses the power of lattice's levelplot and maps databases
+    from the maps and mapdata packages.
+Depends:
+    R (>= 3.2.0)
 Imports:
     lattice
-URL: https://github.com/fernandomayer/FishMaps
+URL: http://git.leg.ufpr.br/fernandomayer/FishMaps
 BugReports: https://github.com/fernandomayer/FishMaps/issues
 License: GPL-3
 LazyData: true
 SysDataCompression: xz
+RoxygenNote: 5.0.1
