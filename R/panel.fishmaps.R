@@ -42,7 +42,7 @@ panel.fishmaps <- function(x, y, z, map.db, msq, breaks, col.reg,
     ## Use points to plot an X where z is zero
     panel.points(x[zero], y[zero], pch = 4, col = "black", ...)
     ## Add a grid according to x and y labels
-    panel.grid(h = -length(labsx), v = -length(labsy), ...)
+    panel.grid(h = -length(labsy), v = -length(labsx), ...)
     ## Draw the coastline
     panel.polygon(map.db$lon, map.db$lat,
                   border = "black", col = "snow", ...)
