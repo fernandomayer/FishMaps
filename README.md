@@ -1,4 +1,4 @@
-# FishMaps 0.3-0
+# FishMaps 0.3-1
 
 [![Build Status](https://travis-ci.org/fernandomayer/FishMaps.svg)](https://travis-ci.org/fernandomayer/FishMaps)
 
@@ -30,10 +30,16 @@ georeferenced data can be used.
 
 Use the `devtools` package (available from
 [CRAN](http://cran-r.c3sl.ufpr.br/web/packages/devtools/index.html)) to
-install automatically from this GitHub repository:
+install automatically from the official Git repository:
 
 ```r
 library(devtools)
+install_git("http://git.leg.ufpr.br/fernandomayer/FishMaps.git")
+```
+
+or, you can also install from the (mirrored) GitHub repository with:
+
+```r
 install_github("fernandomayer/FishMaps")
 ```
 
@@ -56,7 +62,7 @@ install.packages("FishMaps_0.3-0.tar.gz", repos = NULL,
 Note that `-l /path/to/your/R/library` in the former and `lib.loc =
 "/path/to/your/R/library"` in the latter are optional. Only use it if you
 want to install in a personal library, other than the standard R
-library. 
+library.
 
 ### Windows
 
@@ -82,6 +88,6 @@ This package is released under the
 [lattice]: http://cran-r.c3sl.ufpr.br/web/packages/lattice/index.html
 [maps]: http://cran-r.c3sl.ufpr.br/web/packages/maps/index.html
 [mapdata]: http://cran-r.c3sl.ufpr.br/web/packages/mapdata/index.html
-[FishMaps_0.3-0.tar.gz]: https://github.com/fernandomayer/FishMaps/blob/master/downloads/FishMaps_0.3-0.tar.gz?raw=true
-[FishMaps_0.3-0.zip]: https://github.com/fernandomayer/FishMaps/blob/master/downloads/FishMaps_0.3-0.zip?raw=true 
-[FishMaps.pdf]: https://github.com/fernandomayer/FishMaps/raw/master/downloads/FishMaps-manual.pdf
+[FishMaps_0.3-0.tar.gz]: http://git.leg.ufpr.br/fernandomayer/FishMaps/raw/master/downloads/FishMaps_0.3-0.tar.gz
+[FishMaps_0.3-0.zip]: http://git.leg.ufpr.br/fernandomayer/FishMaps/raw/master/downloads/FishMaps_0.3-0.zip
+[FishMaps.pdf]: http://git.leg.ufpr.br/fernandomayer/FishMaps/raw/master/downloads/FishMaps-manual.pdf
