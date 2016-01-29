@@ -1,0 +1,8 @@
+R_check_install:
+  script:
+    - echo $HOME
+    - Rscript -e 'getwd(); .libPaths(); sessionInfo()'
+    - Rscript -e 'library(devtools); load_all()'
+    - Rscript -e 'library(devtools); document()'
+    - Rscript -e 'library(devtools); check_man()'
+    - Rscript -e 'library(devtools); check()'
