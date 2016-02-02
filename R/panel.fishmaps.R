@@ -11,6 +11,7 @@
 ##' @param msq The middle of squares defined in argument \code{square}
 ##' in \code{\link{levelmap}}.
 ##' @param breaks The \code{breaks} argument from \code{\link{levelmap}}.
+##' @param col.land The land color, from \code{\link{levelmap}}.
 ##' @param col.reg The color regions, from \code{\link{levelmap}}.
 ##' @param labsx The x axis ticks and labels.
 ##' @param labsy The y axis ticks and labels.
@@ -21,8 +22,9 @@
 ##' \code{\link{levelmap}} function.
 ##'
 ##' @author Fernando Mayer \email{fernandomayer@@gmail.com}
-panel.fishmaps <- function(x, y, z, map.db, msq, breaks, col.reg,
-                           labsx, labsy, subscripts, ...){
+panel.fishmaps <- function(x, y, z, map.db, msq, breaks,
+                           col.land, col.reg, labsx, labsy,
+                           subscripts, ...){
     x <- as.numeric(x)[subscripts]
     y <- as.numeric(y)[subscripts]
     z <- as.numeric(z)[subscripts]
@@ -45,5 +47,5 @@ panel.fishmaps <- function(x, y, z, map.db, msq, breaks, col.reg,
     panel.grid(h = -length(labsy), v = -length(labsx), ...)
     ## Draw the coastline
     panel.polygon(map.db$lon, map.db$lat,
-                  border = "black", col = "snow", ...)
+                  border = "black", col = col.land, ...)
 }
