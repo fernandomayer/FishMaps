@@ -4,8 +4,8 @@
 \alias{panel.fishmaps}
 \title{A lattice panel function}
 \usage{
-panel.fishmaps(x, y, z, map.db, msq, breaks, col.reg, labsx, labsy, subscripts,
-  ...)
+panel.fishmaps(x, y, z, map.db, msq, breaks, col.land, col.reg, labsx, labsy,
+  subscripts, ...)
 }
 \arguments{
 \item{x}{From lattice formula x.}
@@ -20,6 +20,8 @@ panel.fishmaps(x, y, z, map.db, msq, breaks, col.reg, labsx, labsy, subscripts,
 in \code{\link{levelmap}}.}
 
 \item{breaks}{The \code{breaks} argument from \code{\link{levelmap}}.}
+
+\item{col.land}{The land color, from \code{\link{levelmap}}.}
 
 \item{col.reg}{The color regions, from \code{\link{levelmap}}.}
 

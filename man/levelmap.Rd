@@ -12,8 +12,8 @@ currently (mid-2003) available at
 \url{http://www.evl.uic.edu/pape/data/WDB}.
 }
 \usage{
-levelmap(x, data, xlim, ylim, breaks, square = 1, key.space = "right",
-  database = c("world", "worldHires"), ...)
+levelmap(x, data, xlim, ylim, breaks, square = 1, col.land = "snow",
+  key.space = "right", database = c("world", "worldHires"), ...)
 }
 \arguments{
 \item{x}{A lattice fomula interface, usually \code{z ~ x + y} where
@@ -42,6 +42,10 @@ latitude limits.}
 \item{square}{Size of the square. It must be a length one numeric
 vector (e.g. for squares of 1x1 degrees, this should be 1). Roughly
 speaking this can be viewed as the resolution of the map.}
+
+\item{col.land}{The color of land in map. Any valid color in R is
+accepted, see \code{\link[grDevices]{colors}}. By default it's
+\code{"snow"}, a pale light color.}
 
 \item{key.space}{The location or the colorkey (legend) of the
 map. Can be one of \code{"left"}, \code{"right"}, \code{"top"} and
