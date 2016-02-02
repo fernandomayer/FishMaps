@@ -8,7 +8,7 @@ devtools::load_all()
 ## Para atualizar a documentacao
 devtools::document()
 ## Para conferir a documantacao
-devtools::check_doc()
+devtools::check_man()
 ## Para conferir o pacote completo
 devtools::check()
 
@@ -23,7 +23,8 @@ args(levelmap)
 levelmap(cpue ~ lon + lat | year, data = BB.data.y,
          xlim = c(-60, -40), ylim = c(-35, -20),
          key.space = "right", database = "world",
-         breaks = pretty(BB.data.y$cpue), square = 1)
+         breaks = pretty(BB.data.y$cpue), square = 1,
+         col.land = "darkgrey")
 
 ## BB YEAR with ZERO
 str(BB.data.y)
@@ -144,4 +145,3 @@ library(maps)
 library(mapdata)
 mm <- map("world", plot = FALSE, fill = TRUE)
 ##----------------------------------------------------------------------
-
