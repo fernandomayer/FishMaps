@@ -1,6 +1,6 @@
 
 
-# FishMaps 0.3-2
+# FishMaps 0.3.3
 
 [![Build Status](https://travis-ci.org/fernandomayer/FishMaps.svg)](https://travis-ci.org/fernandomayer/FishMaps)
 
@@ -47,13 +47,13 @@ or, you can also install from the (mirrored) GitHub repository with:
 install_github("fernandomayer/FishMaps")
 ```
 
-Alternatively, download the package tarball: [FishMaps_0.3-2.tar.gz][]
+Alternatively, download the package tarball: [FishMaps_0.3.3.tar.gz][]
 and run from a UNIX terminal (make sure you are on the container file
 directory):
 
 
 ```
-R CMD INSTALL -l /path/to/your/R/library FishMaps_0.3-2.tar.gz
+R CMD INSTALL -l /path/to/your/R/library FishMaps_0.3.3.tar.gz
 ```
 
 Or, inside an `R` session:
@@ -61,7 +61,7 @@ Or, inside an `R` session:
 
 
 ```
-install.packages("FishMaps_0.3-2.tar.gz", repos = NULL,
+install.packages("FishMaps_0.3.3.tar.gz", repos = NULL,
                  lib.loc = "/path/to/your/R/library",
                  dependencies = TRUE)
 ```
@@ -73,13 +73,13 @@ library.
 
 ### Windows
 
-Download Windows binary version: [FishMaps_0.3-2.zip][] (**do not unzip
+Download Windows binary version: [FishMaps_0.3.3.zip][] (**do not unzip
 it under Windows**), put the file in your working directory, and from
 inside `R`:
 
 
 ```
-install.packages("FishMaps_0.3-2.zip", repos = NULL,
+install.packages("FishMaps_0.3.3.zip", repos = NULL,
                  dependencies = TRUE)
 ```
 
@@ -97,6 +97,6 @@ This package is released under the
 [lattice]: http://cran-r.c3sl.ufpr.br/web/packages/lattice/index.html
 [maps]: http://cran-r.c3sl.ufpr.br/web/packages/maps/index.html
 [mapdata]: http://cran-r.c3sl.ufpr.br/web/packages/mapdata/index.html
-[FishMaps_0.3-2.tar.gz]: http://git.leg.ufpr.br/fernandomayer/FishMaps/raw/master/downloads/FishMaps_0.3-2.tar.gz
-[FishMaps_0.3-2.zip]: http://git.leg.ufpr.br/fernandomayer/FishMaps/raw/master/downloads/FishMaps_0.3-2.zip
+[FishMaps_0.3.3.tar.gz]: http://git.leg.ufpr.br/fernandomayer/FishMaps/raw/master/downloads/FishMaps_0.3.3.tar.gz
+[FishMaps_0.3.3.zip]: http://git.leg.ufpr.br/fernandomayer/FishMaps/raw/master/downloads/FishMaps_0.3.3.zip
 [FishMaps-manual.pdf]: http://git.leg.ufpr.br/fernandomayer/FishMaps/raw/master/downloads/FishMaps-manual.pdf
