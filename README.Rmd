@@ -1,6 +1,15 @@
+```{r, echo=FALSE, include=FALSE}
+## Get VERSION and create file names
+ver <- sub(x = grep(x = readLines("DESCRIPTION"),
+           pattern = "^Version: ",
+           value = TRUE),
+           pattern = "^Version: ", replacement = "")
+pkg.name <- "FishMaps_"
+pkg.source <- paste0(pkg.name, ver, ".tar.gz")
+pkg.win <- paste0(pkg.name, ver, ".zip")
+```
 
-
-# FishMaps 0.3-2
+# FishMaps `r ver`
 
 [![Build Status](https://travis-ci.org/fernandomayer/FishMaps.svg)](https://travis-ci.org/fernandomayer/FishMaps)
 
@@ -34,36 +43,34 @@ Use the `devtools` package (available from
 [CRAN](http://cran-r.c3sl.ufpr.br/web/packages/devtools/index.html)) to
 install automatically from the official Git repository:
 
-
-```r
+```{r, eval=FALSE}
 library(devtools)
 install_git("http://git.leg.ufpr.br/fernandomayer/FishMaps.git")
 ```
 
 or, you can also install from the (mirrored) GitHub repository with:
 
-
-```r
+```{r, eval=FALSE}
 install_github("fernandomayer/FishMaps")
 ```
 
-Alternatively, download the package tarball: [FishMaps_0.3-2.tar.gz][]
+Alternatively, download the package tarball: [`r pkg.source`][]
 and run from a UNIX terminal (make sure you are on the container file
 directory):
 
-
-```
-R CMD INSTALL -l /path/to/your/R/library FishMaps_0.3-2.tar.gz
+```{r, echo=FALSE, comment=NA}
+cmd <- paste("R CMD INSTALL -l /path/to/your/R/library", pkg.source)
+cat(cmd, sep = "\n")
 ```
 
 Or, inside an `R` session:
 
 
-
-```
-install.packages("FishMaps_0.3-2.tar.gz", repos = NULL,
-                 lib.loc = "/path/to/your/R/library",
-                 dependencies = TRUE)
+```{r, echo=FALSE, comment=NA}
+inst <- paste0("install.packages(", "\"", pkg.source, "\"", ", repos = NULL,\n",
+               "                 lib.loc = \"/path/to/your/R/library\",\n",
+               "                 dependencies = TRUE)")
+cat(inst, sep = "\n")
 ```
 
 Note that `-l /path/to/your/R/library` in the former and `lib.loc =
@@ -73,14 +80,14 @@ library.
 
 ### Windows
 
-Download Windows binary version: [FishMaps_0.3-2.zip][] (**do not unzip
+Download Windows binary version: [`r pkg.win`][] (**do not unzip
 it under Windows**), put the file in your working directory, and from
 inside `R`:
 
-
-```
-install.packages("FishMaps_0.3-2.zip", repos = NULL,
-                 dependencies = TRUE)
+```{r, echo=FALSE, comment=NA}
+instw <- paste0("install.packages(", "\"", pkg.win, "\"", ", repos = NULL,\n",
+                "                 dependencies = TRUE)")
+cat(instw, sep = "\n")
 ```
 
 ## Documentation
@@ -92,11 +99,18 @@ The reference manual in PDF can be found here: [FishMaps-manual.pdf][]
 This package is released under the
 [GNU General Public License (GPL) v. 3.0](http://www.gnu.org/licenses/gpl-3.0.html)
 
-
+```{r, echo=FALSE, include=FALSE}
+pkg.source.link <- paste0(
+    "http://git.leg.ufpr.br/fernandomayer/FishMaps/raw/master/downloads/",
+    pkg.source)
+pkg.win.link <- paste0(
+    "http://git.leg.ufpr.br/fernandomayer/FishMaps/raw/master/downloads/",
+    pkg.win)
+```
 
 [lattice]: http://cran-r.c3sl.ufpr.br/web/packages/lattice/index.html
 [maps]: http://cran-r.c3sl.ufpr.br/web/packages/maps/index.html
 [mapdata]: http://cran-r.c3sl.ufpr.br/web/packages/mapdata/index.html
-[FishMaps_0.3-2.tar.gz]: http://git.leg.ufpr.br/fernandomayer/FishMaps/raw/master/downloads/FishMaps_0.3-2.tar.gz
-[FishMaps_0.3-2.zip]: http://git.leg.ufpr.br/fernandomayer/FishMaps/raw/master/downloads/FishMaps_0.3-2.zip
+[`r pkg.source`]: `r pkg.source.link`
+[`r pkg.win`]: `r pkg.win.link`
 [FishMaps-manual.pdf]: http://git.leg.ufpr.br/fernandomayer/FishMaps/raw/master/downloads/FishMaps-manual.pdf
