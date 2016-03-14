@@ -97,6 +97,6 @@ This package is released under the
 [lattice]: http://cran-r.c3sl.ufpr.br/web/packages/lattice/index.html
 [maps]: http://cran-r.c3sl.ufpr.br/web/packages/maps/index.html
 [mapdata]: http://cran-r.c3sl.ufpr.br/web/packages/mapdata/index.html
-[FishMaps_0.3.3.tar.gz]: http://git.leg.ufpr.br/fernandomayer/FishMaps/raw/master/downloads/FishMaps_0.3.3.tar.gz
-[FishMaps_0.3.3.zip]: http://git.leg.ufpr.br/fernandomayer/FishMaps/raw/master/downloads/FishMaps_0.3.3.zip
-[FishMaps-manual.pdf]: http://git.leg.ufpr.br/fernandomayer/FishMaps/raw/master/downloads/FishMaps-manual.pdf
+[FishMaps_0.3.3.tar.gz]: https://github.com/fernandomayer/FishMaps/raw/master/downloads/FishMaps_0.3.3.tar.gz
+[FishMaps_0.3.3.zip]: https://github.com/fernandomayer/FishMaps/raw/master/downloads/FishMaps_0.3.3.zip
+[FishMaps-manual.pdf]: https://github.com/fernandomayer/FishMaps/raw/master/downloads/FishMaps-manual.pdf

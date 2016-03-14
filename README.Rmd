@@ -101,10 +101,10 @@ This package is released under the
 
 ```{r, echo=FALSE, include=FALSE}
 pkg.source.link <- paste0(
-    "http://git.leg.ufpr.br/fernandomayer/FishMaps/raw/master/downloads/",
+    "https://github.com/fernandomayer/FishMaps/raw/master/downloads/",
     pkg.source)
 pkg.win.link <- paste0(
-    "http://git.leg.ufpr.br/fernandomayer/FishMaps/raw/master/downloads/",
+    "https://github.com/fernandomayer/FishMaps/raw/master/downloads/",
     pkg.win)
 ```
 
@@ -113,4 +113,4 @@ pkg.win.link <- paste0(
 [mapdata]: http://cran-r.c3sl.ufpr.br/web/packages/mapdata/index.html
 [`r pkg.source`]: `r pkg.source.link`
 [`r pkg.win`]: `r pkg.win.link`
-[FishMaps-manual.pdf]: http://git.leg.ufpr.br/fernandomayer/FishMaps/raw/master/downloads/FishMaps-manual.pdf
+[FishMaps-manual.pdf]: https://github.com/fernandomayer/FishMaps/raw/master/downloads/FishMaps-manual.pdf
