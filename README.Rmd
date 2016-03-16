@@ -90,6 +90,11 @@ instw <- paste0("install.packages(", "\"", pkg.win, "\"", ", repos = NULL,\n",
 cat(instw, sep = "\n")
 ```
 
+## Authors
+
+- [Fernando Mayer](http://www.leg.ufpr.br/~fernandomayer) (LEG/UFPR)
+- [Rodrigo Sant'Ana](http://rodrigosantana.github.io) (CTTMar/UNIVALI)
+
 ## Documentation
 
 The reference manual in PDF can be found here: [FishMaps-manual.pdf][]

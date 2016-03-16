@@ -83,6 +83,11 @@ install.packages("FishMaps_0.3.3.zip", repos = NULL,
                  dependencies = TRUE)
 ```
 
+## Authors
+
+- [Fernando Mayer](http://www.leg.ufpr.br/~fernandomayer) (LEG/UFPR)
+- [Rodrigo Sant'Ana](http://rodrigosantana.github.io) (CTTMar/UNIVALI)
+
 ## Documentation
 
 The reference manual in PDF can be found here: [FishMaps-manual.pdf][]
