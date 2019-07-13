@@ -28,4 +28,3 @@ str(BB.data.y)
 
 }
 \keyword{datasets}
-

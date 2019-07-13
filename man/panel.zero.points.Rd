@@ -24,4 +24,3 @@ maps when data is zero.
 \author{
 Fernando Mayer \email{fernandomayer@gmail.com}
 }
-

@@ -108,10 +108,9 @@ levelmap(cpue ~ lon + lat | year + quarter, data = LL.data.yq,
          breaks = pretty(LL.data.yq$cpue), square = 5)
 
 }
-\author{
-Fernando Mayer \email{fernandomayer@gmail.com}
-}
 \seealso{
 \code{\link[lattice]{levelplot}}, \code{\link[lattice]{xyplot}}
 }
-
+\author{
+Fernando Mayer \email{fernandomayer@gmail.com}
+}

@@ -29,4 +29,3 @@ str(LL.data.y)
 
 }
 \keyword{datasets}
-

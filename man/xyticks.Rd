@@ -27,4 +27,3 @@ is an internal function.
 \author{
 Fernando Mayer \email{fernandomayer@gmail.com}
 }
-
