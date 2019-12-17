@@ -3,7 +3,6 @@
 \docType{package}
 \name{FishMaps}
 \alias{FishMaps}
-\alias{FishMaps-package}
 \title{Plots Fishery Data into Maps.}
 \description{
 Plots georeferenced fishery data (e.g. catch, effort

@@ -12,8 +12,19 @@ currently (mid-2003) available at
 \url{http://www.evl.uic.edu/pape/data/WDB}.
 }
 \usage{
-pointmap(x, data, xlim, ylim, square = 1, col.land = "snow",
-  database = c("world", "worldHires"), ...)
+pointmap(
+  x,
+  data,
+  xlim,
+  ylim,
+  square = 1,
+  col.land = "snow",
+  pch.points = 20,
+  col.points = "black",
+  cex.points = 1,
+  database = c("world", "worldHires"),
+  ...
+)
 }
 \arguments{
 \item{x}{A lattice fomula interface, usually \code{y ~ x} where
@@ -35,6 +46,12 @@ speaking this can be viewed as the resolution of the map.}
 \item{col.land}{The color of land in map. Any valid color in R is
 accepted, see \code{\link[grDevices]{colors}}. By default it's
 \code{"snow"}, a pale light color.}
+
+\item{pch.points}{The _p_oint _ch_aracter to be plotted.}
+
+\item{col.points}{The color of the points to be plotted.}
+
+\item{cex.points}{The size of the points to be plotted.}
 
 \item{database}{The maps database to be used to plot the
 coastlines. Can be one of \code{"world"} (lower resolution) or

@@ -18,6 +18,9 @@
 ##' @param col.land The color of land in map. Any valid color in R is
 ##' accepted, see \code{\link[grDevices]{colors}}. By default it's
 ##' \code{"snow"}, a pale light color.
+##' @param pch.points The _p_oint _ch_aracter to be plotted.
+##' @param col.points The color of the points to be plotted.
+##' @param cex.points The size of the points to be plotted.
 ##' @param database The maps database to be used to plot the
 ##' coastlines. Can be one of \code{"world"} (lower resolution) or
 ##' \code{"worldHires"} (higher resolution). Defaults to
@@ -45,6 +48,8 @@
 ##'
 ##' @export
 pointmap <- function(x, data, xlim, ylim, square = 1, col.land = "snow",
+                     pch.points = 20, col.points = "black",
+                     cex.points = 1,
                      database = c("world", "worldHires"), ...){
     ## Choose database
     database <- match.arg(database)
@@ -62,16 +67,19 @@ pointmap <- function(x, data, xlim, ylim, square = 1, col.land = "snow",
                              list(top.padding = 0, bottom.padding = 0))
     ## Panel function
     panel.fishmaps.points <- function(x, y, map.db, col.land,
-                                      labsx, labsy, ...){
+                                      pch.points, col.points,
+                                      cex.points, labsx, labsy, ...){
     ## Add a grid according to x and y labels
     panel.grid(h = -length(labsy), v = -length(labsx), ...)
     ## Draw the coastline
     panel.polygon(map.db$lon, map.db$lat,
                   border = "black", col = col.land, ...)
-    panel.points(x, y, pch = 20, col = "black", ...)
+    panel.points(x, y, pch = pch.points, col = col.points, cex = cex.points, ...)
     }
     ## Main function
     xyplot(x, data = data, map.db = database, col.land = col.land,
+           pch.points = pch.points, col.points = col.points,
+           cex.points = cex.points,
            labsx = labsx, labsy = labsy, aspect = "iso",
            as.table = TRUE, xlim = xlim, ylim = ylim,
            xlab = "Longitude", ylab = "Latitude",
