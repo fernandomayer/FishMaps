@@ -14,4 +14,4 @@ BugReports: https://github.com/fernandomayer/FishMaps/issues
 License: GPL-3
 LazyData: true
 SysDataCompression: xz
-RoxygenNote: 5.0.1
+RoxygenNote: 7.0.2

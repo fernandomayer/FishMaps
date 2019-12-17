@@ -145,3 +145,16 @@ library(maps)
 library(mapdata)
 mm <- map("world", plot = FALSE, fill = TRUE)
 ##----------------------------------------------------------------------
+
+##======================================================================
+## Teste pointmap
+da <- ## ver dados
+str(da)
+xlim <- c(-49, -48)
+ylim <- c(-26.1, -25)
+
+args(pointmap)
+pointmap(Lat ~ Lon | factor(Semana), data = da,
+         xlim = xlim, ylim = ylim,
+         square = 0.1,
+         database = "worldHires", col.land = "lightgrey")

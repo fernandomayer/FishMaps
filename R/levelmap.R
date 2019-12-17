@@ -93,6 +93,7 @@
 ##'          breaks = pretty(LL.data.yq$cpue), square = 5)
 ##'
 ##' @import lattice
+##' @importFrom grDevices grey.colors
 ##'
 ##' @export
 levelmap <- function(x, data, xlim, ylim, breaks,

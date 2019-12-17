@@ -4,8 +4,20 @@
 \alias{panel.fishmaps}
 \title{A lattice panel function}
 \usage{
-panel.fishmaps(x, y, z, map.db, msq, breaks, col.land, col.reg, labsx, labsy,
-  subscripts, ...)
+panel.fishmaps(
+  x,
+  y,
+  z,
+  map.db,
+  msq,
+  breaks,
+  col.land,
+  col.reg,
+  labsx,
+  labsy,
+  subscripts,
+  ...
+)
 }
 \arguments{
 \item{x}{From lattice formula x.}
@@ -44,4 +56,3 @@ All arguments used here are defined in the source of the
 \author{
 Fernando Mayer \email{fernandomayer@gmail.com}
 }
-

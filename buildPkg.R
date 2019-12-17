@@ -28,7 +28,7 @@ check_man()
 ## Check functions, datasets, run examples, etc. Using cleanup = FALSE
 ## and check_dir = "../" will create a directory named FishMaps.Rcheck
 ## with all the logs, manuals, figures from examples, etc.
-check(cleanup = FALSE, manual = TRUE, vignettes = FALSE,
+check(manual = TRUE, vignettes = FALSE,
       check_dir = "../")
 
 ## Examples

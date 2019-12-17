@@ -31,4 +31,3 @@ str(LL.data.yq)
 
 }
 \keyword{datasets}
-

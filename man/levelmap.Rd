@@ -12,8 +12,18 @@ currently (mid-2003) available at
 \url{http://www.evl.uic.edu/pape/data/WDB}.
 }
 \usage{
-levelmap(x, data, xlim, ylim, breaks, square = 1, col.land = "snow",
-  key.space = "right", database = c("world", "worldHires"), ...)
+levelmap(
+  x,
+  data,
+  xlim,
+  ylim,
+  breaks,
+  square = 1,
+  col.land = "snow",
+  key.space = "right",
+  database = c("world", "worldHires"),
+  ...
+)
 }
 \arguments{
 \item{x}{A lattice fomula interface, usually \code{z ~ x + y} where
@@ -108,10 +118,9 @@ levelmap(cpue ~ lon + lat | year + quarter, data = LL.data.yq,
          breaks = pretty(LL.data.yq$cpue), square = 5)
 
 }
-\author{
-Fernando Mayer \email{fernandomayer@gmail.com}
-}
 \seealso{
 \code{\link[lattice]{levelplot}}, \code{\link[lattice]{xyplot}}
 }
-
+\author{
+Fernando Mayer \email{fernandomayer@gmail.com}
+}
